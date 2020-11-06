@@ -1,4 +1,4 @@
-const gulp = require("gulp"); //
+const gulp = require("gulp"); //gulp
 const sass = require("gulp-sass"); //转.scss文件为.css
 const connect = require("gulp-connect"); //搭建本地服务
 const concat = require("gulp-concat"); //合并
@@ -7,6 +7,7 @@ const rename = require("gulp-rename"); //重命名
 const cleanCss = require("gulp-clean-css"); //压缩css
 const imagemin = require("gulp-imagemin"); //压缩图片
 const babel = require("gulp-babel"); //将高版本ES转为ES5
+const sourcemaps = require("gulp-sourcemaps"); //获取css文件在控制台的行数
 
 //拷贝首页
 gulp.task("indexHtml", done => {
@@ -39,14 +40,27 @@ gulp.task("css", done => {
     done();
 });
 
+//转scss为css
+gulp.task("sass", done => {
+    gulp.src("sass/*.scss")
+        .pipe(sourcemaps.init()) //启用sourcemaps功能
+        .pipe(sass({ //将scss转为css
+            outputStyle: "compressed", //全压缩css
+        }))
+        .pipe(sourcemaps.write()) //生成记录css控制台位置信息的sourcemaps文件
+        .pipe(gulp.dest("dist/css"))
+        .pipe(connect.reload());
+    done();
+});
+
 //拷贝图片
 gulp.task("copyImg", done => {
     gulp.src("img/**").pipe(imagemin()).pipe(gulp.dest("dist/img"));
     done();
 })
 
-//build
-gulp.task("build", gulp.parallel("indexHtml", "otherHtml", "css", "rename", "copyImg"));
+//build 执行以上所有task任务
+gulp.task("build", gulp.parallel("indexHtml", "otherHtml", "css", "rename", "sass", "copyImg"));
 
 //监听
 gulp.task("watch", done => {
@@ -54,6 +68,8 @@ gulp.task("watch", done => {
     gulp.watch("html/*.html", gulp.series("otherHtml"));
     gulp.watch("js/*.js", gulp.series("rename"));
     gulp.watch("css/*.css", gulp.series("css"));
+    gulp.watch("sass/*.scss", gulp.series("css"));
+    gulp.watch("img/**", gulp.series("css"));
     done();
 });
 
