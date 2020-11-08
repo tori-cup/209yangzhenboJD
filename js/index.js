@@ -53,131 +53,89 @@
             }, 1000);
         },
 
+        //seckill JD秒杀主轮播
         seckillSlide: function() {
-            console.log($("#seckill-slide-wrap .seckill-slide-move"));
-            var seckillIndex = 0;
-            $("#seckill .seckill-slide-left").on("click", function() {
-                seckillIndex = seckillIndex = 2 ? 0 : seckillIndex++;
-            })
-        }
+            //DOM绘制完毕
+            var seckillIndexLeft = 0;
+            var seckillIndexRight = 3;
+            window.onload = function() {
+                $("#seckill #seckill-slide-wrap").children(".seckill-slide-left").on("click", function() {
+                    seckillIndexLeft++;
+                    if (seckillIndexLeft == 3) {
+                        seckillIndexLeft = 0;
+                    }
+                    $("#seckill #seckill-slide-wrap").children(".seckill-slide").hide();
+                    if (seckillIndexLeft == 0) {
+                        $("#seckill #seckill-slide-wrap").children(".seckill-slide1").show();
+                    }
+                    if (seckillIndexLeft == 1) {
+                        $("#seckill #seckill-slide-wrap").children(".seckill-slide2").show();
+                    }
+                    if (seckillIndexLeft == 2) {
+                        $("#seckill #seckill-slide-wrap").children(".seckill-slide3").show();
+                    }
+                })
+                $("#seckill #seckill-slide-wrap").children(".seckill-slide-right").on("click", function() {
+                    seckillIndexRight--;
+                    if (seckillIndexRight == -1) {
+                        seckillIndexRight = 2;
+                    }
+                    $("#seckill #seckill-slide-wrap").children(".seckill-slide").hide();
+                    if (seckillIndexRight == 0) {
+                        $("#seckill #seckill-slide-wrap").children(".seckill-slide1").show();
+                    }
+                    if (seckillIndexRight == 1) {
+                        $("#seckill #seckill-slide-wrap").children(".seckill-slide2").show();
+                    }
+                    if (seckillIndexRight == 2) {
+                        $("#seckill #seckill-slide-wrap").children(".seckill-slide3").show();
+                    }
+
+                })
+            }
+        },
+        //seckill JD秒杀右侧轮播
+        seckillSlideBrand: function() {
+
+
+            var timer1 = setInterval(function() {
+                $("#seckill .seckill-slide-brand .slide-brand1").fadeOut();
+                $("#seckill .seckill-slide-brand .slide-brand2").fadeIn();
+            }, 1000)
+            var timer1 = setInterval(function() {
+                    $("#seckill .seckill-slide-brand .slide-brand1").fadeIn();
+                    $("#seckill .seckill-slide-brand .slide-brand2").fadeOut();
+                }, 2000)
+                /* var timer = setInterval(function() {
+                    if ($("#seckill .seckill-slide-brand .slide-brand1").css("position") == "relative") {
+                        $("#seckill .seckill-slide-brand .slide-brand1").animate({
+                            "position": "absolute",
+                            "z-index": "-1",
+                            "left": "-100%"
+                        });
+                        while ($("#seckill .seckill-slide-brand .slide-brand1").css("left") == "-100%") {
+                            $("#seckill .seckill-slide-brand .slide-brand1").css({
+                                "left": "100%"
+                            })
+                        }
+                        $("#seckill .seckill-slide-brand .slide-brand2").animate({
+                            "position": "absolute",
+                            "z-index": "10",
+                            "left": "0"
+                        });
+                    }
+                    
+                }, 1000)
+                var timer = setInterval(function() {
+                    $("#seckill .seckill-slide-brand .slide-brand1").animate({
+                        "left": "0"
+                    });
+                    $("#seckill .seckill-slide-brand .slide-brand2").animate({
+                        "position": "relative",
+                        "z-index": "-1",
+                        "left": "0"
+                    });
+                }, 2000) */
+        },
     })
 })(jQuery);
-
-/* //图片轮播
-class SeckillSlide {
-    constructor(id, interval) {
-        this.sliderBox = document.getElementsByClassName(id)[0];
-        this.sliderUl = this.sliderBox.children[0];
-        this.sliderLi = this.sliderUl.children;
-        this.perWidth = this.sliderLi[0].offsetWidth;
-        this.sliderUl.style.width = this.sliderLi.length * this.perWidth + "px";
-        this.timer = null;
-        this.i = 0;
-        this.autoPlay(interval);
-        this.clear(interval);
-    };
-    //移动
-    move() {
-        this.i++;
-        if (this.i == this.sliderLi.length) {
-            this.sliderUl.style.left = 0;
-            this.i = 1;
-        }
-        if (this.i == -1) {
-            this.sliderUl.style.left = -(this.sliderLi.length - 1) * this.perWidth + "px";
-            this.i = this.sliderLi.length - 2;
-        }
-        if (this.aNums) {
-            for (let j = 0; j < this.aNums.length; j++) {
-                this.aNums[j].className = "";
-            }
-
-            if (this.i == this.sliderLi.length - 1) {
-                this.aNums[0].className = "hover";
-            } else {
-                this.aNums[this.i].className = "hover";
-            }
-        }
-        startMove(this.sliderUl, {
-            left: -this.perWidth * this.i
-        });
-    };
-    //自动轮播
-    autoPlay(interval) {
-        this.timer = setInterval(() => {
-            this.move();
-        }, interval);
-    };
-    //添加按钮，左右箭头，点击轮播
-    addBtns() {
-        let oDiv = document.createElement("div");
-        oDiv.className = "btns";
-        oDiv.innerHTML = "<span>&lt;</span><span>&gt;</span>";
-        this.sliderBox.appendChild(oDiv);
-        let aBtns = oDiv.children;
-        aBtns[0].onclick = () => {
-            this.move();
-        }
-        aBtns[1].onclick = () => {
-            this.i -= 2;
-            this.move();
-        }
-    };
-    //清除定时器，划入划出轮播区域
-    clear(interval) {
-        this.sliderBox.onmouseover = () => {
-            clearInterval(this.timer);
-        }
-        this.sliderBox.onmouseout = () => {
-            this.timer = setInterval(() => {
-                this.move();
-            }, interval)
-        }
-    }
-}
-
-function startMove(domobj, json, fn) {
-    clearInterval(domobj.timer);
-    domobj.timer = setInterval(function() {
-        var flag = true; //表示都达到了目标值
-        for (var attr in json) {
-            var iTarget = json[attr]; //目标值
-            if (attr == "opacity") {
-                var iCur = parseInt(getStyle(domobj, "opacity") * 100);
-            } else {
-                var iCur = parseInt(getStyle(domobj, attr)); //当前值
-            }
-
-            var iSpeed = (iTarget - iCur) / 8;
-            iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
-
-            if (attr == "opacity") {
-                domobj.style.opacity = (iCur + iSpeed) / 100;
-                domobj.style.filter = "alpha(opacity=" + (iCur + iSpeed) + ")";
-            } else {
-                domobj.style[attr] = iCur + iSpeed + "px";
-            }
-
-
-            if (iCur != iTarget) {
-                flag = false;
-            }
-        }
-
-        if (flag) {
-            clearInterval(domobj.timer);
-            if (fn) {
-                fn();
-            }
-        }
-
-    }, 20);
-
-}
-
-function getStyle(domobj, attr) {
-    if (window.getComputedStyle) {
-        return getComputedStyle(domobj, null)[attr];
-    }
-    return domobj.currentStyle[attr];
-} */

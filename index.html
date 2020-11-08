@@ -501,18 +501,91 @@
                     <span></span>
                 </p>
             </div>
-            <!-- seckill-slide -->
-            <div id="seckill-slide-wrap">
-            </div>
+            <!-- seckill-slide 外部引入 -->
+            <div id="seckill-slide-wrap"></div>
 
-            <div class="brand-seckill-slide"></div>
+            <div class="seckill-slide-brand">
+                <!-- indexSeckill-slide-brand.jpg. -->
+                <div class="slide-brand slide-brand1">
+                    <div class="slide-brand-top">
+                        <img src="img/indexSeckill-slide-brand1.jpg" alt="">
+                    </div>
+                    <div class="slide-brand-tit">
+                        <p>好货限量</p>
+                        <span>70英寸</span>
+                    </div>
+                    <div class="slide-brand-seckill">大牌闪购&gt;</div>
+                </div>
+                <div class="slide-brand slide-brand2">
+                    <div class="slide-brand-top">
+                        <img src="img/indexSeckill-slide-brand2.jpg" alt="">
+                    </div>
+                    <div class="slide-brand-tit">
+                        <p>好货限量</p>
+                        <span>Zippo品牌</span>
+                    </div>
+                    <div class="slide-brand-seckill">大牌闪购&gt;</div>
+                </div>
+                <div class="slide-directive">
+                    <p class="slide-directive1"></p>
+                    <p class="slide-directive2"></p>
+                </div>
+            </div>
         </div>
     </div>
 
     <!-- PLUS-DAY -->
     <div id="PLUS-DAY">
         <div class="PLUS-DAY-tit"></div>
-        <div class="PLUS-DAY-con"></div>
+        <div class="PLUS-DAY-con">
+            <!-- 引入外部样式 -->
+        </div>
+    </div>
+
+    <!--day-brand每日特价 品牌闪购 -->
+    <div id="day-brand">
+        <!-- day-deal每日特价 -->
+        <div class="day-brand day-deal">
+            <div class="day-brand-tit day-deal-tit">
+                <h3>每日特价</h3>
+                <p></p>
+                <ul>
+                    <li><a href="#right-con1">精选</a></li>
+                    <li><a href="#right-con2">美食</a></li>
+                    <li><a href="#right-con3">百货</a></li>
+                    <li><a href="#right-con4">个护</a></li>
+                    <li><a href="#right-con5">预告</a></li>
+                </ul>
+            </div>
+            <div class="day-deal-con">
+                <div class="left">
+                    <img src="img/index-day-brand1.jpg" alt="">
+                    <h3>福建红花油</h3>
+                    <p><b>￥</b>8.8<span>￥12.8</span></p>
+                    <div>已抢<span>270</span>件</div>
+                </div>
+                <div class="right">
+                    <!-- 外部引入html -->
+                </div>
+            </div>
+        </div>
+        <!-- brand-buy每日特价 -->
+        <div class="day-brand brand-buy">
+            <div class="day-brand-tit day-buy-tit">
+                <h3>每日特价</h3>
+                <p></p>
+            </div>
+            <div class="day-buy-con">
+                <div class="left">
+                    <img class="left-pic1" src="img/index-day-buy-con1.png" alt="">
+                    <h3>全屋定制专场</h3>
+                    <div>每满300减40元 | 禁剩2<span>2</span>天</div>
+                    <img class="left-pic2" src="img/index-day-buy-con2.png" alt="">
+                </div>
+                <div class="right">
+                </div>
+            </div>
+        </div>
     </div>
     <script>
         (function() {
@@ -537,10 +610,19 @@
                 })
                 //倒计时
             $("#seckill .count-down").countDown();
+
+            //秒杀主轮播图
+            $("#seckill #seckill-slide-wrap").load("html/indexSeckill-1.html");
+            $("#seckill #seckill-slide-wrap").seckillSlide();
+            //秒杀右侧轮播图
+            $("#seckill .seckill-slide-brand").seckillSlideBrand();
+            //PLUS-DAY-CON具体商品内容
+            $("#PLUS-DAY .PLUS-DAY-con").load("html/index-PLUS-DAY.html");
+
+            //day-brand 每日特价、品牌闪购 外部引入html 
+            $("#day-brand .day-brand .day-deal-con .right").load("html/index-day-deal-con-right.html");
+            $("#day-brand .day-brand .day-buy-con .right").load("html/index-day-brand-buy-right.html");
         })();
-        //秒杀轮播图
-        $("#seckill #seckill-slide-wrap").load("html/indexSeckill-1.html");
-        $("#seckill #seckill-slide-wrap").seckillSlide();
     </script>
 </body>
 
