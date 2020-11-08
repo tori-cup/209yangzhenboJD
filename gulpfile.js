@@ -24,7 +24,8 @@ gulp.task("otherHtml", done => {
 
 //拷贝压缩js
 gulp.task("rename", done => {
-    gulp.src(["js/register.js", "js/login.js", "js/jquery1.11.js"])
+    gulp.src("js/*.js")
+        .pipe(connect.reload())
         .pipe(uglify())
         .pipe(gulp.dest("dist/js"))
         .pipe(concat("main.js"))
@@ -34,7 +35,7 @@ gulp.task("rename", done => {
 
 //拷贝压缩css
 gulp.task("css", done => {
-    gulp.src("css/*.css").pipe(sass())
+    gulp.src("css/**").pipe(sass())
         .pipe(cleanCss())
         .pipe(gulp.dest("dist/css"))
     done();
@@ -57,10 +58,16 @@ gulp.task("sass", done => {
 gulp.task("copyImg", done => {
     gulp.src("img/**").pipe(imagemin()).pipe(gulp.dest("dist/img"));
     done();
-})
+});
+
+//拷贝font字体
+gulp.task("copyFont", done => {
+    gulp.src("font/**").pipe(uglify()).pipe(gulp.dest("dist/font"));
+    done();
+});
 
 //build 执行以上所有task任务
-gulp.task("build", gulp.parallel("indexHtml", "otherHtml", "css", "rename", "sass", "copyImg"));
+gulp.task("build", gulp.parallel("indexHtml", "otherHtml", "css", "rename", "sass", "copyImg", "copyFont"));
 
 //监听
 gulp.task("watch", done => {
@@ -68,8 +75,9 @@ gulp.task("watch", done => {
     gulp.watch("html/*.html", gulp.series("otherHtml"));
     gulp.watch("js/*.js", gulp.series("rename"));
     gulp.watch("css/*.css", gulp.series("css"));
-    gulp.watch("sass/*.scss", gulp.series("css"));
-    gulp.watch("img/**", gulp.series("css"));
+    gulp.watch("sass/*.scss", gulp.series("sass"));
+    gulp.watch("img/**", gulp.series("copyImg"));
+    gulp.watch("font/**", gulp.series("copyFont"));
     done();
 });
 

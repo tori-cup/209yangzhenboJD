@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Swiper demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../css/index-slideshow.css">
+    <script src="../js/index-slideshow.js"></script>
+    <style>
+        html,
+        body {
+            position: relative;
+            height: 100%;
+        }
+        
+        body {
+            background: #eee;
+            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color: #000;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .indexMain-container {
+            width: 590px;
+            height: 470px;
+        }
+        
+        .swiper-slide {
+            background-position: center;
+            background-size: cover;
+        }
+        /* 自改样式 */
+        
+        .indexMain-container .indexMain-slide img {
+            width: 590px;
+            height: 470px;
+        }
+        
+        .indexMain-container .swiper-button-next {}
+    </style>
+</head>
+
+<body>
+    <!-- Swiper -->
+    <div class="swiper-container indexMain-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide indexMain-slide" style="background-image:url(../img/indexMain-slide1.jpg)"></div>
+            <div class="swiper-slide indexMain-slide" style="background-image:url(../img/indexMain-slide2.jpg)"></div>
+            <div class="swiper-slide indexMain-slide" style="background-image:url(../img/indexMain-slide3.jpg)"></div>
+            <div class="swiper-slide indexMain-slide" style="background-image:url(../img/indexMain-slide4.jpg)"></div>
+            <div class="swiper-slide indexMain-slide" style="background-image:url(../img/indexMain-slide5.jpg)"></div>
+            <div class="swiper-slide indexMain-slide" style="background-image:url(../img/indexMain-slide6.jpg)"></div>
+            <div class="swiper-slide indexMain-slide" style="background-image:url(../img/indexMain-slide7.jpg)"></div>
+            <div class="swiper-slide indexMain-slide" style="background-image:url(../img/indexMain-slide8.jpg)"></div>
+        </div>
+        <!-- Add Pagination 页码 -->
+        <div class="swiper-pagination swiper-pagination-white"></div>
+        <!-- Add Arrows 箭头 -->
+        <!-- 下一个 -->
+        <div class="swiper-button-next swiper-button-white"></div>
+        <!-- 上一个 -->
+        <div class="swiper-button-prev swiper-button-white"></div>
+    </div>
+
+    <!-- Initialize Swiper -->
+    <script>
+        var swiperMain = new Swiper('.indexMain-container', {
+            loop: true, //自动播放
+            autoplay: true, //等同于以下设置，自动播放
+            autoplay: {
+                delay: 1200, //自动轮播时间间隔
+                stopOnLastSlide: false,
+                disableOnInteraction: true,
+            },
+            spaceBetween: 30,
+            effect: 'fade',
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+        swiperMain.el.onmouseover = function() {
+            swiperMain.autoplay.stop();
+        };
+        //鼠标离开开始自动切换
+        swiperMain.el.onmouseout = function() {
+            swiperMain.autoplay.start();
+        };
+    </script>
+</body>
+
+</html>

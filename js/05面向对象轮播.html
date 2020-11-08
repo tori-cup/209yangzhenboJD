@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body,
+        ul,
+        li {
+            margin: 0;
+            padding: 0;
+        }
+        
+        li {
+            list-style: none;
+        }
+        
+        img {
+            display: block;
+            border: none;
+        }
+        
+        .sliderBox {
+            position: relative;
+            width: 900px;
+            height: 300px;
+            overflow: hidden;
+        }
+        
+        .sliderList {
+            position: absolute;
+        }
+        
+        .sliderList li {
+            float: left;
+            width: 900px;
+            height: 300px;
+        }
+        
+        .sliderList img {
+            width: 900px;
+            height: 300px;
+        }
+        
+        .btns span {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            font-size: 50px;
+            text-align: center;
+            line-height: 50px;
+            top: 50%;
+            margin-top: -25px;
+            cursor: pointer;
+            background-color: black;
+            color: white;
+            opacity: 0.5;
+        }
+        
+        .btns span:first-child {
+            left: 10px;
+        }
+        
+        .btns span:last-child {
+            right: 10px;
+        }
+        
+        .nums {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+        }
+        
+        .nums li {
+            float: left;
+            margin: 10px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: white;
+            color: red;
+            text-align: center;
+            line-height: 20px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        
+        .nums li.hover,
+        .nums li:hover {
+            background-color: red;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="sliderBox" class="sliderBox">
+        <ul id="sliderList" class="sliderList">
+            <li><img src="../img/indexSeckill1.jpg"></li>
+            <li><img src="../img/indexSeckill2.jpg"></li>
+            <li><img src="../img/indexSeckill1.jpg"></li>
+            <li><img src="../img/indexSeckill2.jpg"></li>
+        </ul>
+    </div>
+
+    <script src="startMove.js"></script>
+    <script src="slider.js"></script>
+    <script>
+        let slider = new Slider("sliderBox", 1000);
+        slider.addBtns();
+    </script>
+</body>
+
+</html>
