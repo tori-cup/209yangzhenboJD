@@ -328,7 +328,7 @@
     </div>
 
     <!-- 弹窗协议 -->
-    <div id="register-dialog">
+    <!-- <div id="register-dialog">
         <div class="dialog-title">
             京东用户注册协议和隐私政策
         </div>
@@ -355,21 +355,24 @@
             十、法律管辖适用及其他 1、本协议的订立、执行和解释及争议的解决均应适用中国法律。如双方就本协议内容或其执行发生任何争议，双方应尽力友好协商解决；协商不成时，应向协议签订地有管辖权的人民法院提起诉讼。本协议签订地为中华人民共和国北京市大兴区。 2、如果本协议中任何一条被视为废止、无效或因任何理由不可执行，该条应视为可分的且并不影响任何其余条款的有效性和可执行性。 3、本协议未明示授权的其他权利仍由京东保留，您在行使这些权利时须另外取得京东的书面许可。京东如果未行使前述任何权利，并不构成对该权利的放弃。
         </div>
         <!-- 点击开始注册 -->
-        <div class="dialog-argee">同意并继续</div>
-        点击关闭，跳转首页
-        <div class="dialog-close">×</div>
-    </div>
-    <div id="register-bgCover">11</div>
+    <!-- <div class="dialog-argee">同意并继续</div> -->
+    <!-- 点击关闭，跳转首页 -->
+    <!-- <div class="dialog-close">×</div> -->
+    </div> -->
+    <!-- <div id="register-bgCover">11</div> -->
     <script>
         (function() {
             //调用弹窗注册协议
-            $("#register-dialog").each(function() {
+            /* $("#register-dialog").each(function() {
                 $(this).dialog1();
-            });
+            }); */
             //调用选择国家
             $("#list").selectCountry();
             //调用验证手机号
             $("#register-con .notice").verify();
+
+            //手机正则验证
+            $("#register-con form").phoneRegular();
         })()
     </script>
 </body>

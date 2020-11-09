@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Swiper demo</title>
+    <link rel="stylesheet" href="../css/index-slideshow.css">
+    <script src="../js/index-slideshow.js"></script>
+    <!-- Demo styles -->
+    <style>
+        html,
+        body {
+            position: relative;
+            height: 100%;
+        }
+        
+        body {
+            background: #eee;
+            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color: #000;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .indexFind-good-container {
+            width: 990px;
+            height: 260px;
+        }
+        
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+            /* Center slide text vertically */
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+        }
+        /* 公共样式 */
+        
+        .indexFind-good-container .indexFind-good-swiper-wrapper {
+            /* 匀速滚动 无停留 */
+            transition-timing-function: linear !important;
+        }
+        
+        .indexFind-good-container .indexFind-good-swiper-wrapper .swiper-slide {
+            width: 197.5px;
+            height: 260px;
+            display: flex;
+            flex-direction: column;
+            /*上下排列*/
+            transition: .5s color ease;
+        }
+        
+        .indexFind-good-container .indexFind-good-swiper-wrapper .swiper-slide:hover {
+            cursor: pointer;
+            color: #e1251b;
+        }
+        
+        .indexFind-good-container .indexFind-good-swiper-wrapper .swiper-slide img {
+            width: 150px;
+            height: 150px;
+            transition: .5s opacity ease;
+        }
+        
+        .indexFind-good-container .indexFind-good-swiper-wrapper .swiper-slide img:hover {
+            opacity: .8;
+            /* 划过透明 */
+        }
+        
+        .indexFind-good-container .indexFind-good-swiper-wrapper .swiper-slide:nth-child(odd) img {
+            /* 奇数下移 */
+            width: 150px;
+            height: 150px;
+            position: relative;
+            top: 30px;
+        }
+        
+        .indexFind-good-container .indexFind-good-swiper-wrapper .swiper-slide:nth-child(even) img {
+            /* 偶数上移 */
+            width: 150px;
+            height: 150px;
+            position: relative;
+            top: -30px;
+        }
+        
+        .indexFind-good-container .indexFind-good-swiper-wrapper .swiper-slide .tit {
+            text-align: center;
+        }
+        
+        .indexFind-good-container .indexFind-good-swiper-wrapper .swiper-slide .tit:hover {
+            color: #e1251b;
+        }
+        
+        .indexFind-good-container .indexFind-good-swiper-wrapper .swiper-slide:nth-child(odd) .tit {
+            /* 奇数上移 */
+            position: relative;
+            top: -160px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Swiper -->
+    <div class="swiper-container indexFind-good-container">
+        <div class="swiper-wrapper indexFind-good-swiper-wrapper">
+            <div class="swiper-slide">
+                <img src="../img/indexFind-good-slide1.png" alt="">
+                <div class="tit">笔记本</div>
+            </div>
+            <div class="swiper-slide">
+                <img src="../img/indexFind-good-slide2.png" alt="">
+                <div class="tit">手机</div>
+            </div>
+            <div class="swiper-slide">
+                <img src="../img/indexFind-good-slide3.png" alt="">
+                <div class="tit">拉杆箱</div>
+            </div>
+            <div class="swiper-slide">
+                <img src="../img/indexFind-good-slide4.png" alt="">
+                <div class="tit">傻瓜</div>
+            </div>
+            <div class="swiper-slide">
+                <img src="../img/indexFind-good-slide4.png" alt="">
+                <div class="tit">傻瓜</div>
+            </div>
+            <div class="swiper-slide">
+                <img src="../img/indexFind-good-slide3.png" alt="">
+                <div class="tit">拉杆箱</div>
+            </div>
+        </div>
+        <!-- Add Scrollbar -->
+        <!-- <div class="swiper-scrollbar"></div> -->
+        <!-- Add Pagination -->
+        <div class="swiper-pagination">
+            <span></span>
+        </div>
+
+    </div>
+
+    <!-- Initialize Swiper -->
+    <script>
+        var swiperFindGood = new Swiper('.indexFind-good-container', {
+            loop: true, //循环滚动
+            autoplay: true, //等同于以下设置，自动播放
+            speed: 2500, //匀速时间
+            autoplay: {
+                delay: 0,
+                stopOnLastSlide: false,
+                disableOnInteraction: true,
+            },
+            freeMode: true,
+            slidesPerView: 4, //每个画面
+            /* scrollbar: {
+                el: '.swiper-scrollbar',
+                hide: true,
+            }, */
+            paginationProgressbarClass: 'my-pagination-progressbar',
+            centeredSlides: true,
+            spaceBetween: 0,
+        });
+        swiperFindGood.el.onmouseover = function() {
+            swiperFindGood.autoplay.stop();
+        };
+        //鼠标离开开始自动切换
+        swiperFindGood.el.onmouseout = function() {
+            swiperFindGood.autoplay.start();
+        };
+    </script>
+</body>
+
+</html>

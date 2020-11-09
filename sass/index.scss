@@ -89,6 +89,32 @@ $width:1190px;
     }
 }
 
+// 分类标题
+@mixin activityTit {
+    padding: 0 20px;
+    position: relative;
+    height: 60px;
+    overflow: hidden;
+    h3 {
+        float: left;
+        margin-top: 18px;
+        font-weight: 700;
+        font-size: 24px;
+        color: #333;
+    }
+    p {
+        position: absolute;
+        left: 130px;
+        top: 26px;
+        width: 16px;
+        height: 16px;
+        background: url(../img/indexSprite.png) no-repeat -16px 0;
+        &:hover {
+            background-position: 0 0;
+        }
+    }
+}
+
 body {
     background: #F4F4F4;
 }
@@ -1125,29 +1151,7 @@ body {
         background: #fff;
         position: relative;
         .day-brand-tit {
-            padding: 0 20px;
-            position: relative;
-            height: 60px;
-            overflow: hidden;
-            h3 {
-                float: left;
-                margin-top: 18px;
-                font-weight: 700;
-                font-size: 24px;
-                color: #333;
-            }
-            p {
-                position: absolute;
-                left: 130px;
-                top: 26px;
-                width: 16px;
-                height: 16px;
-                background: url(../img/indexSprite.png) no-repeat -16px 0;
-                // transition: background-position .5s ease;
-                &:hover {
-                    background-position: 0 0;
-                }
-            }
+            @include activityTit();
             ul {
                 float: right;
                 position: absolute;
@@ -1186,12 +1190,19 @@ body {
                     width: 120px;
                     height: 120px;
                     margin: 30px 20px 10px;
+                    &:hover {
+                        cursor: pointer;
+                    }
                 }
                 h3 {
                     text-align: center;
                     height: 20px;
                     line-height: 20px;
                     font-size: 14px;
+                    &:hover {
+                        color: #E1251B;
+                        cursor: pointer;
+                    }
                 }
                 p {
                     text-align: center;
@@ -1379,4 +1390,81 @@ body {
             }
         }
     }
+}
+
+;
+// find-good 发现好货
+#find-good {
+    width: $width;
+    height: 260px;
+    margin: 10px auto;
+    display: flex;
+    justify-content: space-between;
+    .left {
+        width: 190px;
+        height: 260px;
+        background: url(../img/indexFind-good-left.png) no-repeat center;
+        .tit-wrap {
+            width: 160px;
+            height: 80px;
+            margin: 20px;
+            overflow: hidden;
+            text-align: center;
+            font-weight: 700;
+            font-size: 30px;
+            color: #fff;
+            background: url(../img/indexFind-good-bg.png) no-repeat center;
+            .tit {
+                color: rgba(255, 255, 255, .8);
+                font-size: 16px;
+                margin-top: 50px;
+                margin-left: 20px;
+                text-align: left;
+                position: relative;
+                .pic {
+                    width: 16px;
+                    height: 16px;
+                    background: url(../img/indexSprite.png) no-repeat -16px 0;
+                    position: absolute;
+                    top: 5px;
+                    right: 25px;
+                    &:hover {
+                        background-position: 0 0;
+                    }
+                }
+            }
+        }
+    }
+    .right {
+        width: 990px;
+        height: 260px;
+    }
+}
+
+;
+// @include activityTit();
+#nts-rank-goodShop-ticket {
+    width: $width;
+    height: 340px;
+    margin: 10px auto;
+    display: flex;
+    justify-content: space-between;
+    .item {
+        width: 290px;
+        height: 340px;
+        background: #fff;
+        .tit {
+            @include activityTit();
+        }
+    }
+    .nts {
+        .con {
+            width: 260px;
+            height: 250px;
+            margin: 15px;
+        }
+    }
+    .rank {}
+    .goodShop {}
+    .ticket {}
 }

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Swiper demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../css/index-slideshow.css">
+    <script src="../js/index-slideshow.js"></script>
+
+    <!-- Demo styles -->
+    <style>
+        html,
+        body {
+            position: relative;
+            height: 100%;
+        }
+        
+        body {
+            background: #eee;
+            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color: #000;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .index-nts-container {
+            width: 260px;
+            height: 250px;
+        }
+        
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+            /* Center slide text vertically */
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+            transition: 300ms;
+            transform: scale(0.8);
+        }
+        
+        .swiper-slide-active,
+        .swiper-slide-duplicate-active {
+            transform: scale(1);
+        }
+        /*  */
+        
+        .index-nts-container .index-nts-swiper-wrapper {
+            width: 130px;
+            height: 100%;
+        }
+        
+        .index-nts-container .index-nts-swiper-wrapper .swiper-slide {
+            width: 130px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            /* justify-content: space-between; */
+        }
+        
+        .index-nts-container .index-nts-swiper-wrapper .swiper-slide img {
+            width: 130px;
+            height: 130px;
+        }
+        
+        .index-nts-container .index-nts-swiper-wrapper .swiper-slide .tit {
+            height: 20px;
+            text-align: center;
+            font-size: 16px;
+            color: #333;
+            margin: 0;
+            width: 260px;
+            margin-top: 10px;
+        }
+        
+        .index-nts-container .index-nts-swiper-wrapper .swiper-slide .subtit {
+            height: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #999;
+            margin: 0;
+            width: 260px;
+        }
+        
+        .index-nts-container .index-nts-swiper-wrapper .swiper-slide .price {
+            height: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: red;
+            margin: 0;
+            margin-top: 15px;
+            width: 260px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Swiper -->
+    <div class="swiper-container index-nts-container">
+        <div class="swiper-wrapper index-nts-swiper-wrapper">
+            <div class="swiper-slide">
+                <img src="../img/indexNts-slide1.png" alt="">
+                <h3 class="tit">汰渍</h3>
+                <h4 class="subtit">来这里发现更多新品</h4>
+                <p class="price">￥144.0起</p>
+            </div>
+            <div class="swiper-slide">
+                <img src="../img/indexNts-slide2.png" alt="">
+                <h3 class="tit">华为Mate</h3>
+                <h4 class="subtit">来这里发现更多新品</h4>
+                <p class="price">￥144.0起</p>
+            </div>
+            <div class="swiper-slide">
+                <img src="../img/indexNts-slide3.png" alt="">
+                <h3 class="tit">荣耀</h3>
+                <h4 class="subtit">来这里发现更多新品</h4>
+                <p class="price">￥144.0起</p>
+            </div>
+            <div class="swiper-slide">
+                <img src="../img/indexNts-slide4.png" alt="">
+                <h3 class="tit">床</h3>
+                <h4 class="subtit">来这里发现更多新品</h4>
+                <p class="price">￥144.0起</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Initialize Swiper -->
+    <script>
+        var swiperNtsSlide = new Swiper('.index-nts-container', {
+            loop: true,
+            autoplay: true, //等同于以下设置，自动播放
+            speed: 1500, //滚动速度1500
+            autoplay: {
+                delay: 0, //自动轮播时间间隔
+                stopOnLastSlide: false,
+                disableOnInteraction: true,
+            },
+            slidesPerView: 2.2,
+            spaceBetween: 0,
+            centeredSlides: true, //图片中间显示
+        });
+        swiperNtsSlide.el.onmouseover = function() {
+            swiperNtsSlide.autoplay.stop();
+        };
+        //鼠标离开开始自动切换
+        swiperNtsSlide.el.onmouseout = function() {
+            swiperNtsSlide.autoplay.start();
+        };
+    </script>
+</body>
+
+</html>

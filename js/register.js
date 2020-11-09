@@ -1,8 +1,3 @@
-// $(function() {
-/* $("#dialog:has(.dialog-argee)");
-console.log($("div"));
-console.log("a"); */
-// });
 ;
 (function($) {
     $.fn.extend({
@@ -82,6 +77,8 @@ console.log("a"); */
             } */
         },
 
+
+
         //手机号为空提示 点击输入提示
         verify: function() {
             $("#register-con form input[type='button']").each(function() {
@@ -114,12 +111,55 @@ console.log("a"); */
                 });
             });
         },
-
+        //手机号输入框正则验证
+        phoneRegular: function() {
+            $(this).find(".phone [type=text]").focusout(function() {
+                // 6-12位字符，以字母开头 
+                if ((/^1(3|4|5|6|7|8|9)\d{9}$/g).test(this.value)) {
+                    $(this).parent().parent().find(".notice").text("");
+                    return;
+                } else {
+                    $(this).parent().parent().find(".notice").text("请输入有效的手机号");
+                }
+            });
+        },
+        //密码输入框正则验证
+        psdRegular: function() {
+            $(this).find("[type=password]").focusout(function() {
+                // 6-12位字符，以字母开头 
+                if (/^[a-zA-Z]\w{6,12}$/.test(this.value)) {
+                    $(this).parent().find(".psdNotice").text("");
+                    return;
+                } else {
+                    $(this).parent().find(".psdNotice").text("请输入6-12位字符，以字母开头");
+                }
+            });
+        },
         //点击下一步
         nextStep: function() {
             $("#register-con form #next").click(function() {
                 $("#register-con form #next")
             });
         },
+        //注册
+        userRegister: function() {
+            $(this).find("[value=注册]").on("click", function() {
+                //点击时获取用户名username和密码password
+                //注册接口
+                console.log($(this).parent().find(">[input=text]"))
+                console.log($(this).parent().find("[input=password]"))
+                $.get("http://jx.xuzhixiang.top/ap/api/reg.php", {
+                    username: $(this).parent().find(">[input=text]").val(),
+                    password: $(this).parent().find("[input=password]").val(),
+                }, data => {
+                    if (data.code = 1) {
+                        location.href = "http://localhost:8080/index.html";
+                    } else {
+                        alert("用户名已被占用，请重试");
+                    }
+                })
+            })
+        }
+
     });
 })(jQuery);

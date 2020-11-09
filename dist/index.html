@@ -572,7 +572,7 @@
         <!-- brand-buy每日特价 -->
         <div class="day-brand brand-buy">
             <div class="day-brand-tit day-buy-tit">
-                <h3>每日特价</h3>
+                <h3>品牌闪购</h3>
                 <p></p>
             </div>
             <div class="day-buy-con">
@@ -584,6 +584,50 @@
                 </div>
                 <div class="right">
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- find-good -->
+    <div id="find-good">
+        <div class="left">
+            <div class="tit-wrap">
+                <div class="tit">
+                    探索新生活
+                    <div class="pic"></div>
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <!-- 引入外部轮播图html -->
+        </div>
+    </div>
+
+    <!-- nts-rank-goodShop-ticket 新品首发-排行榜-逛好店-领券中心 -->
+    <div id="nts-rank-goodShop-ticket">
+        <div class="item nts">
+            <div class="tit">
+                <h3>新品首发</h3>
+                <p></p>
+            </div>
+            <div class="nts-con"></div>
+        </div>
+        <div class="item tank">
+            <div class="tit">
+                <h3>排行榜</h3>
+                <p></p>
+            </div>
+        </div>
+        <div class="item goodshop">
+            <div class="tit">
+                <h3>逛好店</h3>
+                <p></p>
+            </div>
+        </div>
+        <div class="item ticket">
+            <div class="tit">
+                <h3>领券中心</h3>
+                <p></p>
             </div>
         </div>
     </div>
@@ -601,20 +645,20 @@
             $("#slider-side").load("html/indexSide-slideshow.html");
             //滚动条滚动 顶部出现
             $(window).scroll(function() {
-                    var st = $(this).scrollTop(); //获得滚动距离
-                    if (st >= 200) {
-                        $("#srcoll-slide-wrap").slideDown(); //滚动条大于200，搜索框淡入
-                    } else {
-                        $("#srcoll-slide-wrap").fadeOut(); //搜索框淡出
-                    }
-                })
-                //倒计时
+                var st = $(this).scrollTop(); //获得滚动距离
+                if (st >= 200) {
+                    $("#srcoll-slide-wrap").slideDown(); //滚动条大于200，搜索框淡入
+                } else {
+                    $("#srcoll-slide-wrap").fadeOut(); //搜索框淡出
+                }
+            });
+            //倒计时
             $("#seckill .count-down").countDown();
 
             //秒杀主轮播图
             $("#seckill #seckill-slide-wrap").load("html/indexSeckill-1.html");
             $("#seckill #seckill-slide-wrap").seckillSlide();
-            //秒杀右侧轮播图
+            //秒杀右侧轮播图 原生index.js
             $("#seckill .seckill-slide-brand").seckillSlideBrand();
             //PLUS-DAY-CON具体商品内容
             $("#PLUS-DAY .PLUS-DAY-con").load("html/index-PLUS-DAY.html");
@@ -622,6 +666,14 @@
             //day-brand 每日特价、品牌闪购 外部引入html 
             $("#day-brand .day-brand .day-deal-con .right").load("html/index-day-deal-con-right.html");
             $("#day-brand .day-brand .day-buy-con .right").load("html/index-day-brand-buy-right.html");
+
+            //find-good 
+            $("#find-good .right").load("html/index-find-good-slide.html");
+
+            //与上面的冲突
+            // $("#nts-rank-goodShop-ticket .nts .nts-con").load("html/index-nts-slide.html")
+
+
         })();
     </script>
 </body>

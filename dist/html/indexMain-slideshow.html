@@ -68,12 +68,12 @@
     <!-- Initialize Swiper -->
     <script>
         var swiperMain = new Swiper('.indexMain-container', {
-            loop: true, //自动播放
+            loop: true, //循环滚动
             autoplay: true, //等同于以下设置，自动播放
             autoplay: {
                 delay: 1200, //自动轮播时间间隔
                 stopOnLastSlide: false,
-                disableOnInteraction: true,
+                disableOnInteraction: true, //触摸后停止
             },
             spaceBetween: 30,
             effect: 'fade',

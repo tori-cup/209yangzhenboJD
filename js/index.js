@@ -46,7 +46,7 @@
                 oTime2.innerText = minute;
                 oTime3.innerText = second;
             }
-            var oDate = new Date("2020/11/8 10:59:59");
+            var oDate = new Date("2020/12/8 10:59:59");
             rank(oDate);
             var timer = setInterval(function() {
                 rank(oDate);
@@ -55,9 +55,9 @@
 
         //seckill JD秒杀主轮播
         seckillSlide: function() {
-            //DOM绘制完毕
             var seckillIndexLeft = 0;
             var seckillIndexRight = 3;
+            //DOM绘制完毕
             window.onload = function() {
                 $("#seckill #seckill-slide-wrap").children(".seckill-slide-left").on("click", function() {
                     seckillIndexLeft++;
@@ -103,39 +103,39 @@
                 $("#seckill .seckill-slide-brand .slide-brand2").fadeIn();
             }, 1000)
             var timer1 = setInterval(function() {
-                    $("#seckill .seckill-slide-brand .slide-brand1").fadeIn();
-                    $("#seckill .seckill-slide-brand .slide-brand2").fadeOut();
-                }, 2000)
-                /* var timer = setInterval(function() {
-                    if ($("#seckill .seckill-slide-brand .slide-brand1").css("position") == "relative") {
-                        $("#seckill .seckill-slide-brand .slide-brand1").animate({
-                            "position": "absolute",
-                            "z-index": "-1",
-                            "left": "-100%"
-                        });
-                        while ($("#seckill .seckill-slide-brand .slide-brand1").css("left") == "-100%") {
-                            $("#seckill .seckill-slide-brand .slide-brand1").css({
-                                "left": "100%"
-                            })
-                        }
-                        $("#seckill .seckill-slide-brand .slide-brand2").animate({
-                            "position": "absolute",
-                            "z-index": "10",
-                            "left": "0"
-                        });
-                    }
-                    
-                }, 1000)
-                var timer = setInterval(function() {
+                $("#seckill .seckill-slide-brand .slide-brand1").fadeIn();
+                $("#seckill .seckill-slide-brand .slide-brand2").fadeOut();
+            }, 2000);
+            /* var timer = setInterval(function() {
+                if ($("#seckill .seckill-slide-brand .slide-brand1").css("position") == "relative") {
                     $("#seckill .seckill-slide-brand .slide-brand1").animate({
-                        "left": "0"
-                    });
-                    $("#seckill .seckill-slide-brand .slide-brand2").animate({
-                        "position": "relative",
+                        "position": "absolute",
                         "z-index": "-1",
+                        "left": "-100%"
+                    });
+                    while ($("#seckill .seckill-slide-brand .slide-brand1").css("left") == "-100%") {
+                        $("#seckill .seckill-slide-brand .slide-brand1").css({
+                            "left": "100%"
+                        })
+                    }
+                    $("#seckill .seckill-slide-brand .slide-brand2").animate({
+                        "position": "absolute",
+                        "z-index": "10",
                         "left": "0"
                     });
-                }, 2000) */
+                }
+                
+            }, 1000)
+            var timer = setInterval(function() {
+                $("#seckill .seckill-slide-brand .slide-brand1").animate({
+                    "left": "0"
+                });
+                $("#seckill .seckill-slide-brand .slide-brand2").animate({
+                    "position": "relative",
+                    "z-index": "-1",
+                    "left": "0"
+                });
+            }, 2000) */
         },
     })
 })(jQuery);
