@@ -26,7 +26,7 @@ gulp.task("otherHtml", done => {
 gulp.task("rename", done => {
     gulp.src("js/*.js")
         .pipe(connect.reload())
-        .pipe(uglify())
+        // .pipe(uglify())
         .pipe(gulp.dest("dist/js"))
         .pipe(concat("main.js"))
         .pipe(gulp.dest("dist/js"));

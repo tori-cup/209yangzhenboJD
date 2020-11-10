@@ -1,4 +1,4 @@
-# register注册
+# register注册 http://localhost:8080/html/register.html
 1. 弹窗协议z-index为10
 2. 弹窗协议点击×，跳转首页，http://localhost:8080/index.html
 3. 弹窗协议点击请登陆，跳转登录页面，http://localhost:8080/html/login.html
@@ -7,10 +7,11 @@
 6. 最外层div名称均包裹register前缀
 7. css样式为.css书写
 
-# index注册
+# index
 1. top为广告部分，右上角×号点击取消，下方元素上移，最右侧悬浮11.11图标（fixed）
 2. nav部分有注册登录，注意链接 接口等
 3. classify产品分类，未接入产品接口，悬浮显示模块为外部接入html文件
 4. 轮播图采用swiper，最右侧登录后显示具体个人信息
 5. z-index：产品分类所在模块的背景图-1，左侧产品二级分类3，右侧登录个人信息2，滚动条滚动顶部搜索框4
 6. 自day-brand 每日特价 品牌闪购，暂定块上下外边距各10px
+7. 注册、登录接口分别写在各自页面内，其余接口写在index-productList.js，index外部接入

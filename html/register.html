@@ -16,7 +16,7 @@
     <div id="register-header-wrap">
         <div id="register-header">
             <h1 id="logo">
-                <a href="http://127.0.0.1:5500/JD/index.html"></a>
+                <a href="http://localhost:8080/index.html"></a>
             </h1>
             <div id="title-txt">欢迎注册</div>
             <div id="have-login">
@@ -81,22 +81,22 @@
                     <div>中国 0086</div>
                 </div>
                 <div class="select-pic"></div>
-                <input type="text" placeholder="建议使用常用手机号">
+                <!-- <input type="text" placeholder="建议使用常用手机号"> -->
             </div>
             <!-- 手机为空，文本提示 -->
-            <div class="notice"></div>
+            <!-- <div class="notice"></div> -->
 
             <!-- 验证码 -->
             <div class="noticePhone">
                 <input type="button" value="点击按钮进行验证" id="noticePhone">
             </div>
             <!-- 用户名 -->
-            <input type="text" placeholder="请输入用户名" class="username">
+            <input type="text" placeholder="请输入用户名" class="registerUserName" id="registerUserName">
             <!-- 密码 -->
-            <input type="password" placeholder="请输入密码">
+            <input type="password" placeholder="请输入密码" class="registerPassword" id="registerPassword">
             <div class="psdNotice"></div>
             <!-- 下一步 -->
-            <input type="button" value="注册" id="next">
+            <input type="button" value="注册" id="newRegisterUser">
             <div class="userType">
                 <div class="company">企业用户注册</div>
                 <div class="overseas">海外用户注册</div>
@@ -377,14 +377,14 @@
             //调用选择国家
             $("#list").selectCountry();
             //调用验证手机号
-            $("#register-con .notice").verify();
+            // $("#register-con .notice").verify();
 
             //手机正则验证
-            $("#register-con form").phoneRegular();
+            // $("#register-con form").phoneRegular();
             $("#register-con form").psdRegular();
 
             //注册
-            $("#register-con form").userRegister();
+            // $("#register-con form").userRegister();
         })()
     </script>
 </body>

@@ -270,7 +270,7 @@
 
 /* 用户名 */
 
-#register-con form .username {
+#register-con form .registerUserName {
     border: 1px solid #ccc;
     width: 400px;
     height: 54px;
@@ -292,7 +292,7 @@
     cursor: pointer;
 }
 
-#register-con form #next {
+#register-con form #newRegisterUser {
     width: 400px;
     margin-top: 5px;
     background: #e2231a;
@@ -300,7 +300,7 @@
     border: 0;
 }
 
-#register-con form #next:hover {
+#register-con form #nnewRegisterUserext:hover {
     opacity: 1;
     border: 0;
 }

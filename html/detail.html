@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- css基础样式 -->
+    <link rel="stylesheet" href="../css/detail.css">
+    <link rel="stylesheet" href="../css/base.css">
+
+    <!-- jQuery -->
+    <script src="../js/jquery1.11.js" charset="utf-8"></script>
+
+    <!-- js -->
+    <script src="../js/cart.js"></script>
+</head>
+<body>
+    <div class="product">
+        <!-- <img src="../img/index-day-deal-con-right1.jpg" alt="">
+        <p class="product-tit1">仙视 Goodview 86英寸会议</p>
+        <p class="product-tit2">商用超薄 4K超高清 触控触摸屏教学一体机 电白板支架套装</p>
+        <p class="price">
+            ￥156
+        </p>
+        <div class="add-cart">
+        </div> -->
+    </div>
+    <script>
+        //获取？id
+        let id = location.search.split("=")[1];
+        // console.log(id)
+        // localStorage.setItem("productDatas", JSON.stringify(productDatas));
+        let oProduct = document.getElementsByClassName("product")[0];
+        $.get("http://jx.xuzhixiang.top/ap/api/detail.php", {
+            id: id,
+        }, function(data) {
+            console.log(data)
+            $.each(data, function(index, item) {
+                console.log(item)
+                if (item.pid) {
+                    oProduct.innerHTML = `
+                        <img src="../${item.pimg}" alt="">
+                        <p class="product-tit1">${item.pname}</p>
+                        <p class="product-tit2">${item.pdesc}</p>
+                        <p class="price">
+                            ${item.pprice}
+                        </p>
+                        <div class="minus-plus">
+                            <span class="minus">-</span>
+                            <input type="text" value="1">
+                            <span class="plus">+</span>
+                        </div>
+                        
+                        <input type="button" value="加入购物车" id="addBtn">
+                    `;
+                } else {
+                    alert(item.msg)
+                }
+            })
+            console.log($(".minus-plus [type=text]")[0])
+            let oInput = $(".minus-plus [type=text]")[0]
+            $(".minus").click(function(){
+                oInput.value--;
+                if (oInput.value < 1) {
+                    oInput.value = 1;
+                }
+            })
+            $(".plus").click(function(){
+                oInput.value++;
+            })
+            oInput.onchange = function() {
+                if (oInput.value < 1) {
+                    oInput.value = 1;
+                }
+            }
+            let cart = new Cart();
+            let oBtn = document.getElementById("addBtn");
+            oBtn.onclick = function() {
+                cart.saveData(id, +oInput.value, false);
+                let locationCartList = "http://localhost:8080/html/cartList.html?id="
+                location.href = locationCartList+=`${id}`;
+            }
+        })
+      
+        // 加减操作
+        
+    </script>
+</body>
+</html>

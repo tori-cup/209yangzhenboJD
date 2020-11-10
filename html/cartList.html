@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- css -->
+    <link rel="stylesheet" href="../css/cartList.css">
+    <link rel="stylesheet" href="../css/base.css">
+
+    <!-- jQuery -->
+    <script src="../js/jquery1.11.js" charset="utf-8"></script>
+
+    <script src="../js/cart.js"></script>
+</head>
+
+<body>
+    <div id="cart-top-wrap">
+         <div id="cart-top">
+            <div class="left">left</div>
+            <ul class="right">right</ul>
+        </div>
+    </div>
+    <div id="search">
+        <h1 id="logo">logo</h1>
+        <input type="text" value="搜索">
+    </div>
+   
+    <div id="cartList">
+        <ul class="tit">
+            <li class="tit1"><input type="checkbox" name="" id="checkAll">全选</li>
+            <li class="tit2">商品</li>
+            <li class="tit3">单价</li>
+            <li class="tit4">数量</li>
+            <li class="tit5">小计</li>
+            <li class="tit6">操作</li>
+        </ul>
+        <ul class="detail">
+            <li class="detail1"><input type="checkbox" name=""></li>
+            <li class="detail2"></li>
+            <li class="detail3"></li>
+            <li class="detail4"></li>
+            <li class="detail5"></li>
+            <li class="detail6">×</li>
+        </ul>
+    </div>
+    
+    <input type="checkbox" name="" id="checkAll">全选
+    <ul id="cartList">
+    </ul>
+    <div id="totalPrice">0</div>
+    <!-- <script src="cart.js"></script> -->
+    <script>
+        // var cart = new Cart();
+        // cart.showData("cartList");
+        let id = location.search.split("=")[1];
+        let oCartList = document.getElementById("cartList");
+        console.log(id)
+        $.get("http://jx.xuzhixiang.top/ap/api/detail.php", {
+            id: id,
+        }, function(data) {
+            console.log(data)
+            $.each(data, function(index, item) {
+                console.log(item)
+                if (item.pid) {
+                    oCartList.innerHTML = `
+                    <ul class="detail">
+                        <li class="detail1"><input type="checkbox" name=""></li>
+                        <li class="detail2"></li>
+                        <li class="detail3"></li>
+                        <li class="detail4"></li>
+                        <li class="detail5"></li>
+                        <li class="detail6">×</li>
+                    </ul>
+                    `;
+                } else {
+                    alert(item.msg)
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>

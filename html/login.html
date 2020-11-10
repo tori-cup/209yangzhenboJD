@@ -6,10 +6,122 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>京东-欢迎登录</title>
     <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/iconfont.css">
+    <script src="../js/jquery1.11.js" charset="utf-8"></script>
+    <script src="../js/login.js"></script>
 </head>
 
 <body>
-    登录111123assa
+    <div id="login-top">
+        <h1 id="logo">
+            <a href="http://localhost:8080/index.html"></a>
+        </h1>
+        <div id="title-txt">欢迎登录</div>
+        <div id="login-question">
+            <i class="iconfont icon-email-fill"></i>
+            <a href="https://surveys.jd.com/index.php?r=survey/index/sid/568245/lang/zh-Hans" target="_blank">登录页面，调查问卷</a>
+        </div>
+    </div>
+    <div id="login-notice">
+        依据《网络安全法》，为保障您的账户安全和正常使用，请尽快完成手机号验证！ 新版<a href="https://about.jd.com/privacy/" target="_blank">《京东隐私政策》</a>已上线，将更有利于保护您的个人隐私。
+    </div>
+    <!-- 登录主界面 -->
+    <div id="login-con-wrap">
+        <div id="login-con">
+            <div class="login-con">
+                <div class="tit">
+                    京东不会以任何理由要求您转账汇款，谨防诈骗。
+                </div>
+                <div class="login-way">
+                    <div class="way way1">扫码登录</div>
+                    <div class="way way2">账户登录</div>
+                    <div class="line"></div>
+                </div>
+                <!-- 用户名 -->
+                <div class="username">
+                    <div class="left">
+                        <i class="iconfont icon-wo"></i>
+                    </div>
+                    <input type="text" placeholder="邮箱/用户名/手机">
+                </div>
+                <!-- 密码 -->
+                <div class="password">
+                    <div class="left">
+                        <i class="iconfont icon-mima"></i>
+                    </div>
+                    <input type="password" placeholder="密码">
+                    <a href="https://aq.jd.com/process/findPwd?s=1" target="_blank" class="forget">
+                        忘记密码?
+                    </a>
+                </div>
+                <div class="user-login">
+                    <input type="button" value="登录">
+                </div>
+                <div class="qq-and-weichat">
+                    <div class="qq-weichat-icon">
+                        <a href="">
+                            <i class="iconfont icon-atm-fill">
+                                <span>QQ</span>
+                           </i>
+                        </a>
+                        <a href="">
+                            <i class="iconfont icon-aixin">
+                                <span>微信</span>
+                            </i>
+                        </a>
+                        <div class="line"></div>
+                    </div>
+                    <a href="http://localhost:8080/html/register.html" target="_blank" class="now-register">
+                        立即注册
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- login-footer -->
+    <div id="login-footer" class="footer w">
+        <div class="links">
+            <a rel="nofollow" target="_blank" href="//www.jd.com/intro/about.aspx"> 关于我们</a>|
+            <a rel="nofollow" target="_blank" href="//www.jd.com/contact/">联系我们</a>|
+            <a rel="nofollow" target="_blank" href="//zhaopin.jd.com/">人才招聘</a>|
+            <a rel="nofollow" target="_blank" href="//www.jd.com/contact/joinin.aspx">商家入驻</a>|
+            <a rel="no  follow" target="_blank" href="//www.jd.com/intro/service.aspx">广告服务</a>|
+            <a rel="nofollow" target="_blank" href="//app.jd.com/">手机京东</a>|
+            <a target="_blank" href="//club.jd.com/links.aspx">友情链接</a>|
+            <a target="_blank" href="//media.jd.com">销售联盟</a>|
+            <a href="//club.jd.com/" target="_blank">京东社区</a>|
+            <a href="//gongyi.jd.com" target="_blank">京东公益</a>|
+            <a target="_blank" href="//en.jd.com/" clstag="pageclick|keycount|20150112ABD|9">English Site</a>
+        </div>
+        <div class="copyright">
+            Copyright©2004-2020&nbsp;&nbsp;京东JD.com&nbsp;版权所有
+        </div>
+    </div>
+
+    <script>
+        $(function() {
+            $("#login-con .login-con .user-login").click(function() {
+                $.get("http://jx.xuzhixiang.top/ap/api/login.php", {
+                    username: $(this).parent().find(".username [type=text]").val(),
+                    password: $(this).parent().find(".password [type=password]").val(),
+
+                }, data => {
+                    if(data.code==1){
+                        localStorage.setItem("username",data.data["username"]);
+                        localStorage.setItem("UID",data.data["id"]);
+                        localStorage.setItem("login",1)
+                        location.href="http://localhost:8080/index.html";
+                        alert("登陆成功")
+                    }else{
+                        alert(data.msg)
+                    }
+                    
+                })
+            })
+        })
+    </script>
 </body>
 
 </html>

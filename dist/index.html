@@ -16,10 +16,12 @@
     <!-- js 首页 -->
     <script src="js/index.js"></script>
 
-
     <!-- 轮播图 -->
     <link rel="stylesheet" href="css/index-slideshow.css">
     <script src="js/index-slideshow.js"></script>
+
+    <!-- 商品列表 -->
+    <script src="js/index-productList.js"></script>
 </head>
 
 <body>
@@ -36,7 +38,7 @@
     </div>
     <!-- 右上广告 -->
     <div id="double-one"><img src="../img/indexTop-right.png" alt=""></div>
-
+    
     <!-- nav -->
     <div id="nav-wrap">
         <div id="nav">
@@ -44,7 +46,7 @@
             <ul class="nav">
                 <li class="list list1">
                     <a href="http://localhost:8080/html/login.html" class="please-login">你好，请登陆</a>
-                    <a href="http://localhost:8080/html/register.html" class="register">免费注册</a>
+                    <a href="http://localhost:8080/html/register.html" class="navRegister">免费注册</a>
                 </li>
                 <li class="line"></li>
                 <li class="list list2"><a href="">我的订单</a></li>
@@ -392,7 +394,7 @@
                         <div class="lgLinks">
                             <a class="login" href="http://localhost:8080/html/login.html">登录</a>
                             <span>|</span>
-                            <a class="register" href="http://localhost:8080/html/register.html">注册</a>
+                            <a class="welcomeRegister" href="http://localhost:8080/html/register.html">注册</a>
                         </div>
                     </div>
                 </div>
@@ -531,6 +533,20 @@
                     <p class="slide-directive2"></p>
                 </div>
             </div>
+
+            <!-- 右侧楼层效果 -->
+            <div id="floor-nav">
+                <ul>
+                    <li class="current-floor"><span>京东秒杀</span></li>
+                    <li><span><img src="../img/index-floor-nav.gif" alt=""></span></li>
+                    <li><span>特色优选</span></li>
+                    <li><span>频道广场</span></li>
+                    <li><span>为你推荐</span></li>
+                    <li><span>客服</span></li>
+                    <li><span>反馈</span></li>
+                    <li>顶部</li>
+                </ul>
+            </div>
         </div>
     </div>
 
@@ -612,23 +628,159 @@
             </div>
             <div class="nts-con"></div>
         </div>
-        <div class="item tank">
+        <div class="item rank">
             <div class="tit">
                 <h3>排行榜</h3>
                 <p></p>
             </div>
+            <div class="rank-con">
+                <div class="rank-con-tit">
+                    <p class="tit1">大家电</p>
+                    <p class="tit2">电脑整机</p>
+                    <p class="tit3">面部护肤</p>
+                </div>
+                <div class="rank-con-d rank-con1">
+                    <div class="rank-con-left">
+                        <img src="img/index-rank-con1.png" alt="">
+                        <span>TOP</span>
+                        <p>01</p>
+                    </div>
+                    <img id ="rank-con-pic" src="img/index-day-deal-con-right2.jpg" alt="">
+                    <p class="rank-con-txt">海尔变频空调</p>
+                </div>
+                <div class="rank-con-d rank-con2">
+                    <div class="rank-con-left">
+                        <img src="img/index-rank-con2.png" alt="">
+                        <span>TOP</span>
+                        <p>02</p>
+                    </div>
+                    <img id ="rank-con-pic" src="img/index-day-deal-con-right2.jpg" alt="">
+                    <p class="rank-con-txt">海尔变频空调</p>
+                </div>
+                <div class="rank-con-d rank-con3">
+                    <div class="rank-con-left">
+                        <img src="img/index-rank-con3.png" alt="">
+                        <span>TOP</span>
+                        <p>03</p>
+                    </div>
+                    <img id ="rank-con-pic" src="img/index-day-deal-con-right2.jpg" alt="">
+                    <p class="rank-con-txt">海尔变频空调</p>
+                </div>
+            </div>
         </div>
         <div class="item goodshop">
-            <div class="tit">
-                <h3>逛好店</h3>
-                <p></p>
-            </div>
         </div>
         <div class="item ticket">
             <div class="tit">
                 <h3>领券中心</h3>
                 <p></p>
             </div>
+            <div class="ticket-con"></div>
+        </div>
+    </div>
+
+    <!-- foryou -->
+    <div id="foryou">
+        为你推荐
+    </div>
+    <div id="foryou-tit">
+        <div class="tit tit1">
+            <div>精选</div>
+            <p>猜你喜欢</p>
+        </div>
+        <div class="tit tit2">
+            <div>智能先锋</div>
+            <p>大电器城</p>
+        </div>
+        <div class="tit tit3">
+            <div>居家优品</div>
+            <p>品质生活</p>
+        </div>
+        <div class="tit tit4">
+            <div>超市百货</div>
+            <p>百货生鲜</p>
+        </div>
+        <div class="tit tit5">
+            <div>时尚达人</div>
+            <p>美妆穿搭</p>
+        </div>
+        <div class="tit tit6">
+            <div>进口好物</div>
+            <p>京东国际</p>
+        </div>
+    </div>
+
+    <!-- 商品列表 公共 -->
+    <div id="productList-p">
+
+        <div class="product-p product1">
+            <img src="img/index-day-deal-con-right1.jpg" alt="">
+            <p class="product-tit1">仙视 Goodview 86英寸会议</p>
+            <p class="product-tit2">商用超薄 4K超高清 触控触摸屏教学一体机 电子白板支架套装</p>
+            <p class="price">
+                ￥156
+            </p>
+            <p class="add-cart">加入购物车</p>
+        </div>
+        <div class="product-p product1">
+            <img src="img/index-day-deal-con-right1.jpg" alt="">
+            <p class="product-tit1">仙视 Goodview 86英寸会议</p>
+            <p class="product-tit2">商用超薄 4K超高清 触控触摸屏教学一体机 电子白板支架套装</p>
+            <p class="price">
+                ￥156
+            </p>
+            <p class="add-cart">加入购物车</p>
+        </div>
+        <div class="product-p product1">
+            <img src="img/index-day-deal-con-right1.jpg" alt="">
+            <p class="product-tit1">仙视 Goodview 86英寸会议</p>
+            <p class="product-tit2">商用超薄 4K超高清 触控触摸屏教学一体机 电子白板支架套装</p>
+            <p class="price">
+                ￥156
+            </p>
+            <p class="add-cart">加入购物车</p>
+        </div>
+        <div class="product-p product1">
+            <img src="img/index-day-deal-con-right1.jpg" alt="">
+            <p class="product-tit1">仙视 Goodview 86英寸会议</p>
+            <p class="product-tit2">商用超薄 4K超高清 触控触摸屏教学一体机 电子白板支架套装</p>
+            <p class="price">
+                ￥156
+            </p>
+            <p class="add-cart">加入购物车</p>
+        </div>
+        <div class="product-p product1">
+            <img src="img/index-day-deal-con-right1.jpg" alt="">
+            <p class="product-tit1">仙视 Goodview 86英寸会议</p>
+            <p class="product-tit2">商用超薄 4K超高清 触控触摸屏教学一体机 电子白板支架套装</p>
+            <p class="price">
+                ￥156
+            </p>
+            <!-- <div class="num">
+                <span>-</span>
+                <input type="text">
+                <span>+</span>
+            </div> -->
+            <p class="add-cart">加入购物车</p>
+        </div>
+    </div>
+
+    <!-- 商品列表 用户登录可看 -->
+    <div id="productList">
+
+        <div class="product product1">
+            <!-- <img src="img/index-day-deal-con-right1.jpg" alt="">
+            <p class="product-tit1">仙视 Goodview 86英寸会议</p>
+            <p class="product-tit2">商用超薄 4K超高清 触控触摸屏教学一体机 电子白板支架套装</p>
+            <p class="price">
+                ￥156
+            </p>
+            <div class="num">
+                <span>-</span>
+                <input type="text">
+                <span>+</span>
+            </div>
+            <p class="add-cart">加入购物车</p> -->
         </div>
     </div>
     <script>
@@ -647,10 +799,33 @@
             $(window).scroll(function() {
                 var st = $(this).scrollTop(); //获得滚动距离
                 if (st >= 200) {
-                    $("#srcoll-slide-wrap").slideDown(); //滚动条大于200，搜索框淡入
+                    $("#srcoll-slide-wrap").slideDown(); //滚动条大于200，搜索框出现
                 } else {
                     $("#srcoll-slide-wrap").fadeOut(); //搜索框淡出
                 }
+            });
+            //滚动条滚动 楼层出现
+            $(window).scroll(function() {
+                 var st = $(this).scrollTop(); //获得滚动距离
+                if (st >= 600) {
+                    $("#floor-nav").show(); //滚动条大于200，搜索框淡入
+                    
+                } else {
+                    $("#floor-nav").hide(); //搜索框淡出
+                }
+                $("#floor-nav li").each(function () {
+                    if (st >= 800 ) {
+                        $("#floor-nav li").eq(1).find("img").css({
+                            "src":"../img/index-floor-nav1.png"
+                        })
+                    }
+                    if (st >= 1400 ) {
+                        $("#floor-nav li").eq(2)
+                        .addClass("current-floor")
+                        .siblings()
+                        .removeClass("current-floor");
+                    }
+                });
             });
             //倒计时
             $("#seckill .count-down").countDown();
@@ -672,8 +847,7 @@
 
             //与上面的冲突
             // $("#nts-rank-goodShop-ticket .nts .nts-con").load("html/index-nts-slide.html")
-
-
+            addProduct();
         })();
     </script>
 </body>
