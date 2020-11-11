@@ -1,6 +1,5 @@
 function addProduct() {
     // 添加商品
-
         /* $.post("http://jx.xuzhixiang.top/ap/api/goods/goods-add.php", {
             // 
             pimg: "img/index-day-deal-con-right1.jpg",
@@ -23,13 +22,13 @@ function addProduct() {
             console.log(data)
         }) */
     //登录
-    $.get("http://jx.xuzhixiang.top/ap/api/login.php", {
+    /* $.get("http://jx.xuzhixiang.top/ap/api/login.php", {
          username: "a1234567",
          password: 123456
      }).then(data => {
          console.log(data);
-     })
-    //查询当前裂表43918
+     }) */
+    //查询43918
     /* $.get("http://jx.xuzhixiang.top/ap/api/productlist.php", {
         uid: 43918,
     }).then(data => {
@@ -49,7 +48,7 @@ function addProduct() {
             console.log(index)
             str += `
             <div class="product">
-                <a href="http://127.0.0.1:5500/JD/html/detail.html?id=${item.pid}" target="_blank"><img src="../${item.pimg}"></a>
+                <a href="http://localhost:8080/html/detail.html?id=${item.pid}" target="_blank"><img src="../${item.pimg}"></a>
                 <p class="product-tit1">${item.pname}</p>
                 <p class="product-tit2">${item.pdesc}</p>
                 <p class="price">${item.pprice}</p>

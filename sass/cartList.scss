@@ -29,40 +29,104 @@ $width:990px;
     }
 }
 // cartList
-#cartList{
-    min-height:100px;
+#cartTit{
     width:$width;
     margin:auto;
-    overflow: hidden;
-    .tit{
+    height: 50px;
+    margin-bottom: 10px;
+    li{
+        float:left;
+        width:80px;
         height: 50px;
-        margin-bottom: 10px;
-        li{
-            float:left;
-            width:80px;
-            height: 50px;
-        }
-        .tit1{
-            width:133px;
-        }
-        .tit2{
-            width:536px;
+    }
+    .tit1{
+        width:173px;
+    }
+    .tit2{
+        width:466px;
+    }
+    .tit4{
+        width:100px;
+    }
+    .tit3,.tit4,.tit5,.tit6{
+        text-align: center;
+    }
+
+}
+;
+
+#totalPrice-cartList{
+    position: relative;
+    width:$width;
+    margin:auto;
+    min-height: 110px;
+    #cartList-wrap{
+        border: 1px solid #aaa;
+        overflow: hidden;
+        .cartList{
+            margin-bottom:10px;
+            height:110px;
+            // box-sizing: border-box;
+            li{
+                float:left;
+                width:80px;
+                height: 110px;
+                line-height:110px;
+                border-bottom: 1px solid #aaa;
+            }
+            .cartList1{
+                width:173px;
+                position: relative;
+                img{
+                    width: 100px;
+                    height:100px;
+                    position: absolute;
+                    left: 20px;
+                    top:0;
+                }
+            }
+            .cartList2{
+                width:466px;
+                line-height:25px;
+            }
+            .cartList3,.cartList5{
+                text-align: center;
+            }
+            .cartList4{
+                width: 100px;
+                text-align: center;
+                input{
+                    width: 50px;
+                    border:1px solid #aaa;
+                    box-sizing: border-box;
+                }
+                span{
+                    display:inline-block;
+                    width: 20px;
+                    height: 20px;
+                    line-height: 20px;
+                    text-align: center;
+                    background: #aaa;
+                    box-sizing: border-box;
+                    cursor: pointer;
+                }
+            }
+            .cartList6{
+                text-align: center;
+                line-height: 110px;
+            }
         }
     }
-    .detail{
-        height: 100px;
+    #totalPrice{
+        width: 100px;
+        height: 50px;
         border: 1px solid #aaa;
-        margin: 10px 0;
-        li{
-            float:left;
-            width:80px;
-            height: 100px;
-        }
-        .detail1{
-            width:133px;
-        }
-        .detail2{
-            width:536px;
-        }
+        position: absolute;
+        bottom:-50px;
+        left: 0;
+        text-align: center;
+        line-height: 50px;
     }
 }
+
+

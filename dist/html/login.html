@@ -104,16 +104,17 @@
         $(function() {
             $("#login-con .login-con .user-login").click(function() {
                 $.get("http://jx.xuzhixiang.top/ap/api/login.php", {
-                    username: $(this).parent().find(".username [type=text]").val(),
+                     username: $(this).parent().find(".username [type=text]").val(),
                     password: $(this).parent().find(".password [type=password]").val(),
 
                 }, data => {
                     if(data.code==1){
+                        console.log(data);
                         localStorage.setItem("username",data.data["username"]);
                         localStorage.setItem("UID",data.data["id"]);
                         localStorage.setItem("login",1)
-                        location.href="http://localhost:8080/index.html";
-                        alert("登陆成功")
+                        // location.href="http://localhost:8080/index.html";
+                        alert("登陆成功");
                     }else{
                         alert(data.msg)
                     }

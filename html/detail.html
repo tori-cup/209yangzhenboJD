@@ -50,14 +50,17 @@
                             <input type="text" value="1">
                             <span class="plus">+</span>
                         </div>
+
+                        <a href="http://localhost:8080/html/cartList.html" target="_blank">
+                            <input type="button" value="加入购物车" id="addBtn">
+                        </a>
                         
-                        <input type="button" value="加入购物车" id="addBtn">
                     `;
                 } else {
                     alert(item.msg)
                 }
             })
-            console.log($(".minus-plus [type=text]")[0])
+            // 加减操作
             let oInput = $(".minus-plus [type=text]")[0]
             $(".minus").click(function(){
                 oInput.value--;
@@ -75,14 +78,16 @@
             }
             let cart = new Cart();
             let oBtn = document.getElementById("addBtn");
+            console.log(id);
             oBtn.onclick = function() {
                 cart.saveData(id, +oInput.value, false);
-                let locationCartList = "http://localhost:8080/html/cartList.html?id="
-                location.href = locationCartList+=`${id}`;
+                localStorage.setItem("detailID",id)//点击存入商品id
+                // localStorage.setItem("detailNUM",oInput.value)//点击存入商品id对应数量
+                console.log(id);
             }
         })
       
-        // 加减操作
+        
         
     </script>
 </body>

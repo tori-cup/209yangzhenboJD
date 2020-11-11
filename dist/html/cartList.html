@@ -17,7 +17,7 @@
 
 <body>
     <div id="cart-top-wrap">
-         <div id="cart-top">
+        <div id="cart-top">
             <div class="left">left</div>
             <ul class="right">right</ul>
         </div>
@@ -26,8 +26,8 @@
         <h1 id="logo">logo</h1>
         <input type="text" value="搜索">
     </div>
-   
-    <div id="cartList">
+
+    <ul id="cartTit">
         <ul class="tit">
             <li class="tit1"><input type="checkbox" name="" id="checkAll">全选</li>
             <li class="tit2">商品</li>
@@ -36,49 +36,93 @@
             <li class="tit5">小计</li>
             <li class="tit6">操作</li>
         </ul>
-        <ul class="detail">
-            <li class="detail1"><input type="checkbox" name=""></li>
-            <li class="detail2"></li>
-            <li class="detail3"></li>
-            <li class="detail4"></li>
-            <li class="detail5"></li>
-            <li class="detail6">×</li>
-        </ul>
+    </ul>
+
+    <!-- 购物车详情 -->
+    <div id="totalPrice-cartList">
+        <div id="cartList-wrap">
+            <!-- <ul class="cartList">
+                <li class="cartList1">
+                    <input type="checkbox" name="">
+                    <img src="" alt="">
+                </li> -->
+            <!-- <li class="cartList2"></li>描述1 -->
+            <!--<li class="per_price cartList3"></li> 单价 -->
+            <!--<li class="per_num cartList4">
+                    <span class="minus">-</span>
+                    <input type="text" >
+                    <span class="plus">+</span>
+                </li> 数量 -->
+            <!--<li class="per_total_price cartList5"></li> 总价 -->
+            <!--<li class="delete cartList6">×</li> 删除 -->
+            <!-- </ul> -->
+            
+        </div>
+        <div id="totalPrice">
+            总价0
+        </div>
     </div>
     
-    <input type="checkbox" name="" id="checkAll">全选
-    <ul id="cartList">
-    </ul>
-    <div id="totalPrice">0</div>
-    <!-- <script src="cart.js"></script> -->
+    
     <script>
-        // var cart = new Cart();
-        // cart.showData("cartList");
-        let id = location.search.split("=")[1];
-        let oCartList = document.getElementById("cartList");
-        console.log(id)
-        $.get("http://jx.xuzhixiang.top/ap/api/detail.php", {
-            id: id,
-        }, function(data) {
-            console.log(data)
-            $.each(data, function(index, item) {
-                console.log(item)
-                if (item.pid) {
-                    oCartList.innerHTML = `
-                    <ul class="detail">
-                        <li class="detail1"><input type="checkbox" name=""></li>
-                        <li class="detail2"></li>
-                        <li class="detail3"></li>
-                        <li class="detail4"></li>
-                        <li class="detail5"></li>
-                        <li class="detail6">×</li>
-                    </ul>
-                    `;
-                } else {
-                    alert(item.msg)
-                }
-            })
-        })
+        var cart = new Cart();
+        cart.showData("cartList-wrap", ".cartList", ".cks", ".per_price", ".minus", ".per_num", ".plus",
+            ".per_total_price", ".del","totalPrice")
+        console.log($(".cks"))
+        // // 商品列表
+        // let oCartList = document.getElementById("cartList-wrap");
+        // // 取商品id
+        // let productID = JSON.parse(localStorage.getItem("detailID"));
+        // //取数据
+        // let cartDatas = JSON.parse(localStorage.getItem("cartDatas"));
+
+        // $.get("http://jx.xuzhixiang.top/ap/api/detail.php", {
+        //     id: productID,
+        // }, data=> {
+        //     console.log(data)
+        //     $.each(data, function(index, item) {
+        //         console.log(item)
+        //         if (item.pimg) {
+        //             oCartList.innerHTML = `
+        //             <ul class="cartList">
+        //                 <li class="cartList1">
+        //                     <input type="checkbox" name="" class="cks">
+        //                     <img src="../${item.pimg}" alt="">
+        //                 </li>
+        //                 <li class="cartList2">${item.pname}${item.pdesc}</li>
+        //                 <li class="per-price cartList3">${item.pprice}</li>
+        //                 <li class="per-num cartList4">
+        //                     <span class="minus">-</span>
+        //                     <input type="text" value="${cartDatas[productID]}">
+        //                     <span class="plus">+</span>
+        //                 </li>
+        //                 <li class="per-total-price cartList5">${item.pprice*cartDatas[productID]}</li>
+        //                 <li class="delete cartList6">×</li>
+        //             </ul>
+        //             `;
+        //         } else {
+        //             alert(item.msg)
+        //         }
+        //     })
+        //     let checkAll = $("#checkAll")[0]; //选中所有
+        //     let aLi = $(".cartList").children();
+        //     let cks = $(".cks")[0]; //复选框
+        //     let perPrice = $(".per-price")[0]; //商品单价
+        //     let minus = $(".minus")[0]; //减
+        //     let num = cartDatas[productID]; //商品数量
+        //     let plus = $(".plus")[0]; //加
+        //     let perTotalPrice = $(".per-total-price")[0]; //单个商品总价
+        //     let del = $(".delete")[0]; //删除按钮
+        //     console.log(checkAll)
+        //     console.log(aLi)
+        //     console.log(cks)
+        //     console.log(perPrice)
+        //     console.log(minus)
+        //     console.log(num)
+        //     console.log(plus)
+        //     console.log(perTotalPrice)
+        //     console.log(del)
+        // })
     </script>
 </body>
 
