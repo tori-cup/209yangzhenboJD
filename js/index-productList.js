@@ -1,221 +1,283 @@
 function addProduct() {
-    // 添加商品
-        /* $.post("http://jx.xuzhixiang.top/ap/api/goods/goods-add.php", {
-            // 
-            pimg: "img/index-day-deal-con-right1.jpg",
-            pname: "仙视 Goodview 86英寸会议",
-            pdesc: "商用超薄 4K超高清 触控触摸屏教学一体机 电子白板支架套装",
-            pprice: "100",
-            uid:43918,
-        }, data => {
-            console.log(data)
-        }) */
-
-        /* $.post("http://jx.xuzhixiang.top/ap/api/goods/goods-add.php", {
-            // 
-            pimg: "img/index-day-deal-con-right2.jpg",
-            pname: "糖豆",
-            pdesc: "糖",
-            pprice: "100",
-            uid:43918,
-        }, data => {
-            console.log(data)
-        }) */
     //登录
     /* $.get("http://jx.xuzhixiang.top/ap/api/login.php", {
-         username: "a1234567",
-         password: 123456
+         username: localStorage.getItem("username"),
+         password: localStorage.getItem("password")
      }).then(data => {
          console.log(data);
+        //  localStorage.setItem("login_uid",JSON.stringify(data.data.id));
+        //  console.log(localStorage.getItem("login_uid"));
      }) */
     //查询43918
-    /* $.get("http://jx.xuzhixiang.top/ap/api/productlist.php", {
-        uid: 43918,
+    $.get("http://jx.xuzhixiang.top/ap/api/cart-list.php", {
+        uid: localStorage.getItem("UID"),
+    }).then(data => {
+        console.log(data);
+    })
+    //删除
+    /* $.get("http://jx.xuzhixiang.top/ap/api/cart-delete.php", {
+        uid: localStorage.getItem("UID"),
+        pid:325635
     }).then(data => {
         console.log(data);
     }) */
-
     //首页商品列表接口
     $.get("http://jx.xuzhixiang.top/ap/api/productlist.php", {
         //传递uid 可以看到添加的商品
-        uid: 43918,
+        // uid: 43918,
+        // uid:localStorage.getItem("UID")
+        // uid: Number(localStorage.getItem("login_uid")),
     }).then(data => {
-        let productDatas = data;
-        localStorage.setItem("productDatas", JSON.stringify(productDatas));
-        productDatas = JSON.parse(localStorage.getItem("productDatas")); 
         var str="";  
-        $.each(productDatas.data, function(index, item) {
-            console.log(index)
+        $.each(data.data, function(index, item) {
+            // console.log(data);
+            // console.log(index)
             str += `
             <div class="product">
                 <a href="http://localhost:8080/html/detail.html?id=${item.pid}" target="_blank"><img src="../${item.pimg}"></a>
                 <p class="product-tit1">${item.pname}</p>
-                <p class="product-tit2">${item.pdesc}</p>
-                <p class="price">${item.pprice}</p>
-                <p class="add-cart">加入购物车</p>
+
+                <p class="price"><span>￥</span>${item.pprice}</p>
             </div>
             `;
             $("#productList").html(str)
         })
     })
-
-    
-
-    //删除用户购物车中的商品 接口
+{/* 
+<p class="product-tit1">${item.pdesc}</p>
+<p class="add-cart">加入购物车</p> */}
+    //修改商品 接口 index-productList.png
+    /* $.get("http://jx.xuzhixiang.top/ap/api/goods/goods-update.php", {
+        pimg:"../img/index-productList16.png",
+        pid: 355831,
+        pname:"四季欧式布艺素色沙发垫 沙发套沙发罩防滑靠背巾全包定做抱枕套子 浅绿色 68*70+15cm",
+        pprice:"79.00",
+    }).then(data => {
+        console.log(data);
+    }) */
+    /* $.get("http://jx.xuzhixiang.top/ap/api/goods/goods-update.php", {
+        pid: 355540,
+        pname:"保温壶超大容量保暖热水瓶男2L户外便携大号旅行水杯3升1000 1000毫升/蓝色/按弹盖",
+        pprice:"174",
+        pimg:"../img/index-productList14.png"
+    }).then(data => {
+        console.log(data);
+    }) */
+    //删除商品 接口 
     /* $.get("http://jx.xuzhixiang.top/ap/api/goods/goods-delete.php", {
         pid: 339504,
-        uid: 43918,
+        uid: null,
         token: "94f2dff69c7281b13a64f4ce65b8fd32"
     }).then(data => {
         console.log(data);
     }) */
 
-    // 生成实例
-    /* let aInput = document.querySelectorAll("li");
-    for (let i = 0; i < aInput.length; i++) {
-        aInput[i].onclick = function() {
-            let id = this.getAttribute("data-id");
-            cart.saveData(id, 1, false);
-        }
-    } */
+    // 添加商品
+     /* $.post("http://jx.xuzhixiang.top/ap/api/goods/goods-add.php", {
+        // 
+        pimg: "../img/index-productList20.png",
+        pname: "中国李宁运动鞋男鞋2020秋季新品001原点男士经典时尚低帮耐磨休闲鞋巴黎时装周走秀同款官方旗舰网 标准白/云雾白/青椒绿-1 41",
+        pprice: "258.00",
+        uid:localStorage.getItem("UID"),
+    }, data => {
+        console.log(data)
+    })
+     $.post("http://jx.xuzhixiang.top/ap/api/goods/goods-add.php", {
+        // 
+        pimg: "../img/index-productList21.png",
+        pname: "《无限爱》女士项链原创小众设计纯银吊坠时尚首饰Ag925银饰品镀铂金七夕礼物送女友 轻奢珠宝 项链+吊坠+精美高档礼盒",
+        pprice: "368.00",
+        uid:localStorage.getItem("UID"),
+    }, data => {
+        console.log(data)
+    }) 
+      $.post("http://jx.xuzhixiang.top/ap/api/goods/goods-add.php", {
+        // 
+        pimg: "../img/index-productList22.png",
+        pname: "佰魅伊人提神防瞌睡学生防疲劳醒脑防困上课开车高考熬夜防困薄荷醒神棒精油 清醒棒",
+        pprice: "39.00",
+        uid:localStorage.getItem("UID"),
+    }, data => {
+        console.log(data)
+    })  
+     $.post("http://jx.xuzhixiang.top/ap/api/goods/goods-add.php", {
+        // 
+        pimg: "../img/index-productList23.png",
+        pname: "都市丽人内衣套装女2020秋冬蕾丝无钢圈透气手掌杯收副乳聚拢BC薄杯文胸套装2B05A4 中国红 34/75A杯",
+        pprice: "149.90",
+        uid:localStorage.getItem("UID"),
+    }, data => {
+        console.log(data)
+    }) */
+
+    /*($.post("http://jx.xuzhixiang.top/ap/api/goods/goods-add.php", {
+        // 
+        pimg: "../img/index-productList3.png",
+        pname: "电动按摩枕U型颈椎低头族神器午睡枕头汽车旅行脖子护颈仪记忆棉靠肩膀加热 揉捏充电按摩枕 经典款单键【震动舒缓】",
+        pprice: 49.00,
+        uid:localStorage.getItem("UID"),
+    }, data => {
+        console.log(data)
+    }) 
+    $.post("http://jx.xuzhixiang.top/ap/api/goods/goods-add.php", {
+        // 
+        pimg: "../img/index-productList4.png",
+        pname: "攀升商睿2代电脑主机办公商用台式机十代i3-10100 8G 256GSSD 商务键鼠 3年上门",
+        pprice: 1925,
+        uid:localStorage.getItem("UID"),
+    }, data => {
+        console.log(data)
+    })
+    $.post("http://jx.xuzhixiang.top/ap/api/goods/goods-add.php", {
+        // 
+        pimg: "../img/index-productList5.png",
+        pname: "程序员 装备必须牛",
+        pprice: 9999,
+        uid:localStorage.getItem("UID"),
+    }, data => {
+        console.log(data)
+    })
+    $.post("http://jx.xuzhixiang.top/ap/api/goods/goods-add.php", {
+        // 
+        pimg: "../img/index-productList6.png",
+        pname: "北欧个性创意设计师客厅金属壁灯现代简约样板卧室床头玻璃壁灯 直径160*370 带光源",
+        pprice: 439,
+        uid:localStorage.getItem("UID"),
+    }, data => {
+        console.log(data)
+    })
+    $.post("http://jx.xuzhixiang.top/ap/api/goods/goods-add.php", {
+        // 
+        pimg: "../img/index-productList7.png",
+        pname: "一叶子套装 补水保湿清洁滋养提亮改善暗沉粗糙护肤品男女 白百合三件套洗面奶/洁面爽肤水乳液",
+        pprice: 89,
+        uid:localStorage.getItem("UID"),
+    }, data => {
+        console.log(data)
+    })
+    $.post("http://jx.xuzhixiang.top/ap/api/goods/goods-add.php", {
+        // 
+        pimg: "../img/index-productList8.png",
+        pname: "创意简约蓝白地中海装饰组合相框影楼走廊卧室客厅画框照片墙 地中海风格-2.1",
+        pprice: 449,
+        uid:localStorage.getItem("UID"),
+    }, data => {
+        console.log(data)
+    })
+    $.post("http://jx.xuzhixiang.top/ap/api/goods/goods-add.php", {
+        // 
+        pimg: "../img/index-productList9.png",
+        pname: "创意简约蓝白地中海装饰组合相框影楼走廊卧室客厅画框照片墙 地中海风格-2.1",
+        pprice: 449,
+        uid:localStorage.getItem("UID"),
+    }, data => {
+        console.log(data)
+    })
+    $.post("http://jx.xuzhixiang.top/ap/api/goods/goods-add.php", {
+        // 
+        pimg: "../img/index-productList10.png",
+        pname: "蛋糕模具家用不粘做慕斯活底的烘焙磨具工具4寸六6/8寸胚子小 圆形阳极活底6寸(送阳极活底4寸+脱模刀+刮板)",
+        pprice: 449,
+        uid:localStorage.getItem("UID"),
+    }, data => {
+        console.log(data)
+    })  */
+    /* $.post("http://jx.xuzhixiang.top/ap/api/goods/goods-add.php", {
+        // 
+        pimg: "../img/index-productList11.png",
+        pname: "创意简约蓝白地中海装饰组合相框影楼走廊卧室客厅画框照片墙 地中海风格-2.1",
+        pprice: 449,
+        // uid:localStorage.getItem("UID"),
+    }, data => {
+        console.log(data)
+    }) */
+    /* $.post("http://jx.xuzhixiang.top/ap/api/goods/goods-add.php", {
+        // 
+        pimg: "../img/index-productList12.png",
+        pname: "创意简约蓝白地中海装饰组合相框影楼走廊卧室客厅画框照片墙 地中海风格-2.",
+        pprice: 449,
+        // uid:localStorage.getItem("UID"),
+    }, data => {
+        console.log(data)
+    }) */
+    /* $.post("http://jx.xuzhixiang.top/ap/api/goods/goods-add.php", {
+        // 
+        pimg: "../img/index-productList13.png",
+        pname: "创意简约蓝白地中海装饰组合",
+        pdesc: "相框影楼走廊卧室客厅画框照片墙 地中海风格-2.1",
+        pprice: 449,
+        // uid:43918,
+    }, data => {
+        console.log(data)
+    }) */
+    /* $.post("http://jx.xuzhixiang.top/ap/api/goods/goods-add.php", {
+        // 
+        pimg: "../img/index-productList14.png",
+        pname: "创意简约蓝白地中海装饰组合",
+        pdesc: "相框影楼走廊卧室客厅画框照片墙 地中海风格-2.1",
+        pprice: 449,
+        // uid:43918,
+    }, data => {
+        console.log(data)
+    }) */
+    /* $.post("http://jx.xuzhixiang.top/ap/api/goods/goods-add.php", {
+        // 
+        pimg: "../img/index-productList15.png",
+        pname: "创意简约蓝白地中海装饰组合",
+        pdesc: "相框影楼走廊卧室客厅画框照片墙 地中海风格-2.1",
+        pprice: 449,
+        // uid:43918,
+    }, data => {
+        console.log(data)
+    }) */
+    /* $.post("http://jx.xuzhixiang.top/ap/api/goods/goods-add.php", {
+        // 
+        pimg: "../img/index-productList16.png",
+        pname: "创意简约蓝白地中海装饰组合",
+        pdesc: "相框影楼走廊卧室客厅画框照片墙 地中海风格-2.1",
+        pprice: 449,
+        // uid:43918,
+    }, data => {
+        console.log(data)
+    }) */
+    /* $.post("http://jx.xuzhixiang.top/ap/api/goods/goods-add.php", {
+        // 
+        pimg: "../img/index-productList17.png",
+        pname: "创意简约蓝白地中海装饰组合",
+        pdesc: "相框影楼走廊卧室客厅画框照片墙 地中海风格-2.1",
+        pprice: 449,
+        // uid:43918,
+    }, data => {
+        console.log(data)
+    }) */
+    /* $.post("http://jx.xuzhixiang.top/ap/api/goods/goods-add.php", {
+        // 
+        pimg: "../img/index-productList18.png",
+        pname: "创意简约蓝白地中海装饰组合",
+        pdesc: "相框影楼走廊卧室客厅画框照片墙 地中海风格-2.1",
+        pprice: 449,
+        // uid:43918,
+    }, data => {
+        console.log(data)
+    }) */
+    /* $.post("http://jx.xuzhixiang.top/ap/api/goods/goods-add.php", {
+        // 
+        pimg: "../img/index-productList19.png",
+        pname: "创意简约蓝白地中海装饰组合",
+        pdesc: "相框影楼走廊卧室客厅画框照片墙 地中海风格-2.1",
+        pprice: 449,
+        // uid:43918,
+    }, data => {
+        console.log(data)
+    }) */
+    /* $.post("http://jx.xuzhixiang.top/ap/api/goods/goods-add.php", {
+        // 
+        pimg: "../img/index-productList20.png",
+        pname: "创意简约蓝白地中海装饰组合",
+        pdesc: "相框影楼走廊卧室客厅画框照片墙 地中海风格-2.1",
+        pprice: 449,
+        // uid:43918,
+    }, data => {
+        console.log(data)
+    }) */
 }
-
-
-
-/* function Cart() {
-    if (localStorage.getItem("cartDatas")) {
-        this.cartDatas = JSON.parse(localStorage.getItem("cartDatas"));
-    } else {
-        this.cartDatas = {};
-    }
-}
-
-Cart.prototype.saveData = function(id, num, tel) {
-    if (this.cartDatas[id] === undefined || tel) {
-        this.cartDatas[id] = num;
-    } else {
-        this.cartDatas[id] += num;
-    }
-
-    localStorage.setItem("cartDatas", JSON.stringify(this.cartDatas), 7);
-}
-Cart.prototype.showData = function(id) {
-    this.oCartList = document.getElementById(id);
-    let productDatas = JSON.parse(localStorage.getItem("productDatas"));
-    let str = "";
-
-    for (let id in this.cartDatas) {
-        str += `<li data-id="${id}">
-            <input type="checkbox" class="cks">
-            <img src="${productDatas[id].imgsrc}">
-            <span>${productDatas[id].title}</span>
-            <span class="perPrice">${productDatas[id].price}</span>
-            <span class="minus">-</span>
-            <input type="text" value="${this.cartDatas[id]}" class="num">
-            <span class="plus">+</span>
-            <span class="perTotalPrice">${productDatas[id].price*this.cartDatas[id]}</span>
-            <span class="del">x</span>
-        </li>`;
-    }
-    this.oCartList.innerHTML = str;
-
-
-    function getAtts(className) {
-        return document.querySelectorAll(className);
-    }
-    let checkAll = document.getElementById("checkAll"); //选中所有
-    this.aLi = document.querySelectorAll("li");
-    this.cks = getAtts(".cks"); //复选框
-    this.perPrice = getAtts(".perPrice"); //商品单价
-    this.minus = getAtts(".minus"); //减
-    this.num = getAtts(".num"); //商品数量
-    this.plus = getAtts(".plus"); //加号
-    this.perTotalPrice = getAtts(".perTotalPrice"); //单个商品总价
-    this.del = getAtts(".del"); //删除按钮
-    console.log(this.aLi)
-        //选中所有
-    checkAll.onclick = () => {
-        for (let i = 0; i < this.cks.length; i++) {
-            this.cks[i].checked = checkAll.checked; //选中所有点击时，复选框状态与其保持一致
-        }
-        this.totalPrice();
-    }
-
-    //点击每个商品
-    for (let i = 0; i < this.cks.length; i++) {
-        this.cks[i].onclick = () => {
-            var count = 0;
-            for (let j = 0; j < this.cks.length; j++) {
-                if (this.cks[j].checked) { //检查当前所有复选框状态，选中加1
-                    count++;
-                }
-            }
-            if (count == this.cks.length) { //所有选中，全选点亮
-                checkAll.checked = true;
-            } else {
-                checkAll.checked = false;
-            }
-            this.totalPrice();
-        }
-    }
-
-
-    for (let i = 0; i < this.minus.length; i++) {
-        //减号
-        this.minus[i].onclick = () => {
-            this.num[i].value--;
-            if (this.num[i].value < 1) {
-                this.num[i].value = 1;
-            }
-            this.updateData(i);
-        };
-        //加号
-        this.plus[i].onclick = () => {
-            this.num[i].value++;
-            this.updateData(i);
-        };
-        //input输入框内容改变
-        this.num[i].onchange = () => {
-            if (this.num[i] < 1) {
-                this.num[i] = 1
-            }
-            this.updateData(i);
-        };
-        //点击删除
-        this.del[i].onclick = () => {
-            this.removeData(i);
-        }
-    }
-
-}
-
-//更新数据
-Cart.prototype.updateData = function(i) {
-    //更新单个商品总价
-    this.perTotalPrice[i].innerText = this.num[i].value * this.perPrice[i].innerText;
-    //更新总价
-    this.totalPrice();
-    //更改cookie数据，以便刷新后更新最新的数据
-    let id = this.aLi[i].getAttribute("data-id");
-    this.saveData(id, this.num[i].value, true);
-}
-
-//更新总价
-Cart.prototype.totalPrice = function() {
-    let totalPrice = document.getElementById("totalPrice");
-    let price = 0;
-    for (let i = 0; i < this.cks.length; i++) {
-        if (this.cks[i].checked) {
-            price += (+this.perTotalPrice[i].innerText);
-        }
-    }
-    totalPrice.innerText = price;
-};
-
-Cart.prototype.removeData = function(i) {
-    let id = this.aLi[i].getAttribute("data-id");
-    this.oCartList.removeChild(this.aLi[i]); //删节点
-    this.cks[i].checked = false; //输出节点后，将节点处的复选框清空
-    delete this.cartDatas[id]; //删数据
-    localStorage.setItem("cartDatas", JSON.stringify(this.cartDatas), 7);
-} */

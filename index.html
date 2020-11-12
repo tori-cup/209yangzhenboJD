@@ -22,6 +22,7 @@
 
     <!-- 商品列表 -->
     <script src="js/index-productList.js"></script>
+    <script src="js/cart.js"></script>
 </head>
 
 <body>
@@ -714,11 +715,39 @@
     <div id="productList-p">
 
         <div class="product-p product1">
-            <img src="img/index-day-deal-con-right1.jpg" alt="">
+            <img src="img/indexSide-slide3.jpg" alt="">
             <p class="product-tit1">仙视 Goodview 86英寸会议</p>
             <p class="product-tit2">商用超薄 4K超高清 触控触摸屏教学一体机 电子白板支架套装</p>
             <p class="price">
-                ￥156
+                <span>￥</span>
+                156
+            </p>
+            <p class="add-cart">加入购物车</p>
+        </div>
+        <div class="product-p product1">
+            <img src="img/indexSeckill-slide-brand2.jpg" alt="">
+            <p class="product-tit1">仙视 Goodview 86英寸会议</p>
+            <p class="product-tit2">商用超薄 4K超高清 触控触摸屏教学一体机 电子白板支架套装</p>
+            <p class="price">
+                <span>￥</span>156
+            </p>
+            <p class="add-cart">加入购物车</p>
+        </div>
+        <div class="product-p product1">
+            <img src="img/indexSeckill2.jpg" alt="">
+            <p class="product-tit1">仙视 Goodview 86英寸会议</p>
+            <p class="product-tit2">商用超薄 4K超高清 触控触摸屏教学一体机 电子白板支架套装</p>
+            <p class="price">
+                <span>￥</span>56
+            </p>
+            <p class="add-cart">加入购物车</p>
+        </div>
+        <div class="product-p product1">
+            <img src="img/indexSeckill1.jpg" alt="">
+            <p class="product-tit1">仙视 Goodview 86英寸会议</p>
+            <p class="product-tit2">商用超薄 4K超高清 触控触摸屏教学一体机 电子白板支架套装</p>
+            <p class="price">
+                <span>￥</span>146
             </p>
             <p class="add-cart">加入购物车</p>
         </div>
@@ -727,40 +756,17 @@
             <p class="product-tit1">仙视 Goodview 86英寸会议</p>
             <p class="product-tit2">商用超薄 4K超高清 触控触摸屏教学一体机 电子白板支架套装</p>
             <p class="price">
-                ￥156
+                <span>￥</span>11
             </p>
             <p class="add-cart">加入购物车</p>
         </div>
         <div class="product-p product1">
-            <img src="img/index-day-deal-con-right1.jpg" alt="">
+            <img src="img/index-day-deal-con-right2.jpg" alt="">
             <p class="product-tit1">仙视 Goodview 86英寸会议</p>
             <p class="product-tit2">商用超薄 4K超高清 触控触摸屏教学一体机 电子白板支架套装</p>
             <p class="price">
-                ￥156
+                <span>￥</span>18
             </p>
-            <p class="add-cart">加入购物车</p>
-        </div>
-        <div class="product-p product1">
-            <img src="img/index-day-deal-con-right1.jpg" alt="">
-            <p class="product-tit1">仙视 Goodview 86英寸会议</p>
-            <p class="product-tit2">商用超薄 4K超高清 触控触摸屏教学一体机 电子白板支架套装</p>
-            <p class="price">
-                ￥156
-            </p>
-            <p class="add-cart">加入购物车</p>
-        </div>
-        <div class="product-p product1">
-            <img src="img/index-day-deal-con-right1.jpg" alt="">
-            <p class="product-tit1">仙视 Goodview 86英寸会议</p>
-            <p class="product-tit2">商用超薄 4K超高清 触控触摸屏教学一体机 电子白板支架套装</p>
-            <p class="price">
-                ￥156
-            </p>
-            <!-- <div class="num">
-                <span>-</span>
-                <input type="text">
-                <span>+</span>
-            </div> -->
             <p class="add-cart">加入购物车</p>
         </div>
     </div>
@@ -848,6 +854,9 @@
             //与上面的冲突
             // $("#nts-rank-goodShop-ticket .nts .nts-con").load("html/index-nts-slide.html")
             addProduct();
+
+            //购物车、滚动显示顶部购物车
+            $("#search").myCart();
         })();
     </script>
 </body>

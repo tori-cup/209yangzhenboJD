@@ -7,6 +7,7 @@
     <!-- css基础样式 -->
     <link rel="stylesheet" href="../css/detail.css">
     <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/iconfont.css">
 
     <!-- jQuery -->
     <script src="../js/jquery1.11.js" charset="utf-8"></script>
@@ -15,16 +16,44 @@
     <script src="../js/cart.js"></script>
 </head>
 <body>
-    <div class="product">
-        <!-- <img src="../img/index-day-deal-con-right1.jpg" alt="">
-        <p class="product-tit1">仙视 Goodview 86英寸会议</p>
-        <p class="product-tit2">商用超薄 4K超高清 触控触摸屏教学一体机 电白板支架套装</p>
-        <p class="price">
-            ￥156
-        </p>
-        <div class="add-cart">
-        </div> -->
+    <div id="detail-top-wrap">
+        <div id="detail-top">
+            <div class="detail-top-left">
+                <span>
+                    <i class="iconfont icon-remen"></i>
+                    京东首页
+                </span>
+                <p>河南</p>
+            </div>
+            <ul class="detail-top-right">
+                <li>我的订单<i class="iconfont icon-falling"></i></li>
+                <li>我的京东<i class="iconfont icon-falling"></i></li>
+                <li>京东会员<i class="iconfont icon-falling"></i></li>
+                <li>企业采购<i class="iconfont icon-falling"></i></li>
+                <li>客户服务<i class="iconfont icon-falling"></i></li>
+                <li>网站导航<i class="iconfont icon-falling"></i></li>
+                <li>手机京东<i class="iconfont icon-falling"></i></li>
+            </ul>
+        </div>
     </div>
+    <div id="detail-logo">
+        <h1></h1>
+    </div>
+    <div id="product-wrap">
+        <div></div>
+        <div class="product">
+            <!-- <img src="../img/index-day-deal-con-right1.jpg" alt="">
+            <p class="product-tit1">仙视 Goodview 86英寸会议</p>
+            <p class="product-tit2">商用超薄 4K超高清 触控触摸屏教学一体机 电白板支架套装</p>
+            <p class="price">
+                ￥<span><>
+                156
+            </p>
+            <div class="add-cart">
+            </div> -->
+        </div>
+    </div>
+    
     <script>
         //获取？id
         let id = location.search.split("=")[1];
@@ -34,15 +63,16 @@
         $.get("http://jx.xuzhixiang.top/ap/api/detail.php", {
             id: id,
         }, function(data) {
-            console.log(data)
+            // console.log(data)
             $.each(data, function(index, item) {
-                console.log(item)
+                // console.log(item)
+                // console.log(item.pid)
                 if (item.pid) {
                     oProduct.innerHTML = `
                         <img src="../${item.pimg}" alt="">
                         <p class="product-tit1">${item.pname}</p>
-                        <p class="product-tit2">${item.pdesc}</p>
                         <p class="price">
+                            <span>￥</span>
                             ${item.pprice}
                         </p>
                         <div class="minus-plus">
@@ -51,44 +81,80 @@
                             <span class="plus">+</span>
                         </div>
 
-                        <a href="http://localhost:8080/html/cartList.html" target="_blank">
+                        <a href="http://localhost:8080/html/cartList.html\" target="_blank">
                             <input type="button" value="加入购物车" id="addBtn">
                         </a>
-                        
                     `;
                 } else {
                     alert(item.msg)
                 }
-            })
-            // 加减操作
-            let oInput = $(".minus-plus [type=text]")[0]
-            $(".minus").click(function(){
-                oInput.value--;
-                if (oInput.value < 1) {
-                    oInput.value = 1;
+                // 加减操作
+                let oInput = $(".minus-plus [type=text]")[0]
+                $(".minus").click(function(){
+                    oInput.value--;
+                    if (oInput.value < 1) {
+                        oInput.value = 1;
+                    }
+                })
+                $(".plus").click(function(){
+                    oInput.value++;
+                })
+                oInput.onchange = function() {
+                    if (oInput.value < 1) {
+                        oInput.value = 1;
+                    }
+                }
+                let cart = new Cart();
+                let oBtn = document.getElementById("addBtn");
+                oBtn.onclick = function() {
+                    // cart.saveData(id, +oInput.value, false);
+                    save(id, +oInput.value, false);
+                    // console.log(typeof +oInput)
+                    //将cart.js中this.cartDatas操作的映射到这里
+                    function save(id,num,tel){
+                        //如果能获取cartDatas数据
+                        if (localStorage.getItem("cartDatas")) {
+                            let cartDatas = JSON.parse(localStorage.getItem("cartDatas"));
+                            //能获取cartDatas数据，判断之前是否添加有本详情页商品
+                            if (cartDatas[id] === undefined || tel) {
+                                cartDatas[id] = num;
+                            } else {
+                                cartDatas[id] += num;
+                            }
+                            localStorage.setItem("cartDatas",JSON.stringify(cartDatas));
+                        } else {
+                            let cartDatas ={};
+                            cartDatas[id]=num;
+                            localStorage.setItem("cartDatas",JSON.stringify(cartDatas));
+                        }
+                    }
+                    //当执行以下操作时，虽然成功存储了所有点击商品的数据，但会导致this.cartDatas存储出现莫名的问题（只保存当前点击，重新从商品列表打开详情可能会恢复正常），因此执行以上操作
+                    if (localStorage.getItem("productDatas")) {
+                        //之前存有productDatas，取出来，加上当前点击的商品（没有数量（数量在cart.saveData中保存），重新存展示时取用productDatas商品，并展示cart.saveData中的数量）
+                        let productDatas =JSON.parse(localStorage.getItem("productDatas"));
+                        // 
+                        /* console.log(productDatas);
+                        console.log(typeof productDatas);
+                        console.log(id)
+                        console.log(item)
+                        console.log(item.pid) */
+                        //循环productDatas对象，当本页商品id和本地存储数据的id不同时才添加进去
+                        for(let detailID in productDatas){
+                            if(item.pid!=detailID){
+                                productDatas[id]=item;
+                            }
+                        }
+                        localStorage.setItem("productDatas",JSON.stringify(productDatas));
+                    } else {
+                        let productDatas = {};
+                        productDatas[id]=item;
+                        localStorage.setItem("productDatas",JSON.stringify(productDatas));
+                        // console.log(JSON.parse(localStorage.getItem("productDatas")))
+                    }
                 }
             })
-            $(".plus").click(function(){
-                oInput.value++;
-            })
-            oInput.onchange = function() {
-                if (oInput.value < 1) {
-                    oInput.value = 1;
-                }
-            }
-            let cart = new Cart();
-            let oBtn = document.getElementById("addBtn");
-            console.log(id);
-            oBtn.onclick = function() {
-                cart.saveData(id, +oInput.value, false);
-                localStorage.setItem("detailID",id)//点击存入商品id
-                // localStorage.setItem("detailNUM",oInput.value)//点击存入商品id对应数量
-                console.log(id);
-            }
+            
         })
-      
-        
-        
     </script>
 </body>
 </html>

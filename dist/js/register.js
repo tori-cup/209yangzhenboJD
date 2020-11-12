@@ -80,7 +80,7 @@
 
 
         //手机号为空提示 点击输入提示
-        /* verify: function() {
+        verify: function() {
             $("#register-con form input[type='button']").each(function() {
                 $(this).click(function() {
                     if ($("#register-con form input[placeholder='建议使用常用手机号']").val().length == 0) {
@@ -100,9 +100,9 @@
                         $("#register-con form .notice").text("");
                     };
                 });
-            }); */
+            }); 
         //验证码
-        /* $("#register-con form #noticePhone").click(function() {
+        $("#register-con form #noticePhone").click(function() {
                 $(this).parent().html(
                     "<p>手机验证码</p><input type='text' placeholder='输入验证码' id='notice-code'><div id='regain'>重新获取<div><div id='noCode'>收不到验证码？点击 <a> 获取语音验证码</a><div>"
                 )
@@ -110,9 +110,9 @@
                     "border": "0"
                 });
             });
-        }, */
+        }, 
         //手机号输入框正则验证
-        /* phoneRegular: function() {
+         phoneRegular: function() {
             $(this).find(".phone [type=text]").focusout(function() {
                 // 6-12位字符，以字母开头 
                 if ((/^1(3|4|5|6|7|8|9)\d{9}$/g).test(this.value)) {
@@ -122,7 +122,7 @@
                     $(this).parent().parent().find(".notice").text("请输入有效的手机号");
                 }
             });
-        }, */
+        }, 
         //密码输入框正则验证
         psdRegular: function() {
             $(this).find("[type=password]").focusout(function() {

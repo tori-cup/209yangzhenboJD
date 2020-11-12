@@ -53,6 +53,7 @@
 #login-con-wrap {
     height: 475px;
     background: #B2010B;
+    width:100%;
     #login-con {
         width: 990px;
         height: 475px;
@@ -231,6 +232,7 @@
     border-top: solid 1px #e6e6e6;
     color: #999;
     overflow: hidden;
+    margin:auto;
     .links {
         padding: 20px 0 15px 0;
         a {

@@ -67,8 +67,16 @@
     <script>
         var cart = new Cart();
         cart.showData("cartList-wrap", ".cartList", ".cks", ".per_price", ".minus", ".per_num", ".plus",
-            ".per_total_price", ".del","totalPrice")
-        console.log($(".cks"))
+            ".per_total_price", ".del","totalPrice");
+        console.log($("#cartList-wrap"))
+        //判断为空提醒
+        if($("#cartList-wrap").children().length==0){
+            $("#cartList-wrap").text("暂时无数据，马上添加商品吧！").css({
+                "text-align":"center",
+                "font-size":"30px",
+                "color":"#e12251"
+            })
+        }
         // // 商品列表
         // let oCartList = document.getElementById("cartList-wrap");
         // // 取商品id

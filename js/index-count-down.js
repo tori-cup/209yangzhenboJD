@@ -13,7 +13,7 @@
         var second = Math.floor(secondInteval % 60);
 
         function add(s) {
-            return s < 10 ? 0 + s : s
+            return s < 10 ? "0" + s : s
         }
         hour = add(hour)
         minute = add(minute)

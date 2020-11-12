@@ -96,8 +96,6 @@
         },
         //seckill JD秒杀右侧轮播
         seckillSlideBrand: function() {
-
-
             var timer1 = setInterval(function() {
                 $("#seckill .seckill-slide-brand .slide-brand1").fadeOut();
                 $("#seckill .seckill-slide-brand .slide-brand2").fadeIn();
@@ -137,5 +135,37 @@
                 });
             }, 2000) */
         },
+
+        //购物车my-cart-data
+        myCart:function(){
+            // 如果不能取到cartDatas数据，赋值购物车数据为0。否则获取的对象cartDatas的长度
+            if(!localStorage.getItem("cartDatas")){
+                var cartDatasNum = 0;
+            }else{
+                var cartDats = JSON.parse(localStorage.getItem("cartDatas"));
+                var cartDatasNum = Object.keys(cartDats).length;
+            }
+            
+            //固定滚动条
+            $("#search .search .my-cart").click(function(){
+                location.href="http://localhost:8080/html/cartList.html";
+            })
+            if(cartDatasNum == 0){
+                //赋值购物车数据为0
+                $("#search .search .my-cart-data").text(0);
+            }else{
+                $("#search .search .my-cart-data").text(cartDatasNum);
+            }
+            
+            //滚动显示滚动条
+            $("#srcoll-slide .search-top .my-cart").click(function(){
+                location.href="http://localhost:8080/html/cartList.html";
+            })
+            if(cartDatasNum == 0){
+                $("#srcoll-slide .search-top .my-cart-data").text(0);
+            }else{
+                $("#srcoll-slide .search-top .my-cart-data").text(cartDatasNum);
+            }
+        }
     })
 })(jQuery);

@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/iconfont.css">
     <script src="../js/jquery1.11.js" charset="utf-8"></script>
-    <script src="../js/login.js"></script>
 </head>
 
 <body>
@@ -104,18 +103,21 @@
         $(function() {
             $("#login-con .login-con .user-login").click(function() {
                 $.get("http://jx.xuzhixiang.top/ap/api/login.php", {
-                     username: $(this).parent().find(".username [type=text]").val(),
+                    username: $(this).parent().find(".username [type=text]").val(),
                     password: $(this).parent().find(".password [type=password]").val(),
 
                 }, data => {
                     if(data.code==1){
                         console.log(data);
-                        localStorage.setItem("username",data.data["username"]);
+                        localStorage.setItem("username",$(".username input").val());
+                        localStorage.setItem("password",$(".password input").val());
                         localStorage.setItem("UID",data.data["id"]);
                         localStorage.setItem("login",1)
-                        // location.href="http://localhost:8080/index.html";
-                        alert("登陆成功");
+                        localStorage.setItem("token",data.data["token"]);
+                        location.href="http://localhost:8080/index.html";
+                        alert(data.msg);
                     }else{
+                        console.log(data)
                         alert(data.msg)
                     }
                     
